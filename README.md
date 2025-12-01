@@ -7,24 +7,25 @@ This repository contains my solutions and write-ups for the 2025 Advent of Code 
 
 **Note:** Solutions are written with the AP Computer Science A (AP CSA) Java subset in mind, for educational and reference purposes.
 
-## Writeups
 
-Links to daily write-ups and explanations:
+## Key AP CSA Learning Features (2025)
 
-1. [Day 1](writeups/Day01.md)
-2. [Day 2](writeups/Day02.md)
-3. [Day 3](writeups/Day03.md)
-4. [Day 4](writeups/Day04.md)
-5. [Day 5](writeups/Day05.md)
-6. [Day 6](writeups/Day06.md)
-7. [Day 7](writeups/Day07.md)
-8. [Day 8](writeups/Day08.md)
-9. [Day 9](writeups/Day09.md)
-10. [Day 10](writeups/Day10.md)
-11. [Day 11](writeups/Day11.md)
-12. [Day 12](writeups/Day12.md)
+This project highlights AP Computer Science A (AP CSA) concepts and learning objectives through Advent of Code problems. Each day is annotated with relevant Java subset features and AP CSA Learning Objectives (LOs).
 
-Each write-up includes a summary of the problem, my approach, and any relevant Java or algorithmic concepts.
+
+### [Day 1: Dial Simulation](writeups/Day01.md)
+- **String parsing**: Using `substring` and `equals` to extract and compare characters.
+- **Integer parsing**: Using `Integer.parseInt` to convert string input to numbers.
+- **Loops**: Iterating over a `List` of input lines with a for-each loop.
+- **Arithmetic and modulo**: Handling wraparound logic with addition, subtraction, and modulo operations.
+- **Conditionals**: Using `if`, `else if`, and `else` to handle multiple cases.
+- **AP CSA LO:**
+	- **LO 3.2.1: Iteration Statements** (for-each, while, for)
+	- **LO 3.1.1: Boolean Expressions** (if/else, relational operators)
+	- **LO 3.4.1: String Methods** (`substring`, `equals`)
+	- **LO 3.5.1: Casting and Math** (Integer parsing, arithmetic)
+
+
 
 ## About
 
