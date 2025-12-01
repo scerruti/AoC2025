@@ -1,0 +1,16 @@
+target/
+*.class
+*.log
+*.iml
+.idea/
+.vscode/
+.DS_Store
+# Eclipse
+.classpath
+.project
+.settings/
+# Maven
+/logs/
+/target/
+# OS
+Thumbs.db
