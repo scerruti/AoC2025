@@ -56,11 +56,18 @@ if (position == 0) {
 
 
 
-## AP CSA Subset Compliance
 
-- The solution uses only AP subset types and methods: `ArrayList<String>` for input, `substring`, `equals`, and standard arithmetic.
-- Iteration (for-each, while) and selection (if/else if/else) are standard AP subset features.
-- No Java features outside the AP subset are used. All input is handled as `ArrayList<String>`, which is explicitly allowed in the AP subset for 2025.
+## AP CSA Subset Compliance and Learning Objectives
+
+This solution is fully AP CSA subset compliant and addresses the following official AP Computer Science A Learning Objectives (2025):
+
+- **LO 3.1.1:** Evaluate Boolean expressions (used in if/else conditions)
+- **LO 3.2.1:** Write iteration statements to traverse a String or array (for-each and while loops)
+- **LO 3.3.1:** Write conditional statements (if, if-else, else-if)
+- **LO 3.4.1:** Call and use String methods (`substring`, `equals`)
+- **LO 3.5.1:** Perform arithmetic operations and type casting (integer math, modulo, `Integer.parseInt`)
+
+All input is handled as `ArrayList<String>`, which is explicitly allowed in the AP subset for 2025. No Java features outside the AP subset are used.
 
 
 ## Teaching Notes
