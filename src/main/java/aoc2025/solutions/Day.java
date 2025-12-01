@@ -1,5 +1,8 @@
 package aoc2025.solutions;
 
+import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,6 +21,19 @@ public abstract class Day {
             return Files.readAllLines(Path.of(filename));
         } catch (IOException e) {
             throw new RuntimeException("Could not read input file: " + filename, e);
+        }
+    }
+    protected List<String> loadInput(int day) {
+        String sampleFlag = System.getProperty("aoc.sample");
+        if (sampleFlag == null) {
+            sampleFlag = System.getenv("AOC_SAMPLE");
+        }
+        String filename = String.format("resources/day%02d%s.txt", day, (sampleFlag != null && sampleFlag.equalsIgnoreCase("true")) ? "-sample" : "");
+        try (InputStream is = getClass().getResourceAsStream(filename)) {
+            if (is == null) throw new IOException("Input file not found: " + filename);
+            return new BufferedReader(new InputStreamReader(is)).lines().toList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
