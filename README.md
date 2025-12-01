@@ -33,9 +33,10 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
 - This project is for reference and educational purposes.
 - No puzzle text or input files from the AoC website are included, in accordance with event rules.
 
+
 ## Reference
 
-- My [2022 AoC repo](reference/AoC2022/) is included for structure and style reference.
+The reference folder has been removed. For previous years' solutions, see your own archives or the official Advent of Code website.
 
 ---
 Feedback and suggestions are welcome!
