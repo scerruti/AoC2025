@@ -57,25 +57,46 @@ if (position == 0) {
 
 
 
+
 ## AP CSA Subset Compliance and Learning Objectives
 
-This solution is fully AP CSA subset compliant and addresses the following official AP Computer Science A Learning Objectives (2025):
+This solution is fully compliant with the 2025 AP Computer Science A Java subset and directly addresses the following official Learning Objectives (LOs):
 
-- **LO 3.1.1:** Evaluate Boolean expressions (used in if/else conditions)
-- **LO 3.2.1:** Write iteration statements to traverse a String or array (for-each and while loops)
-- **LO 3.3.1:** Write conditional statements (if, if-else, else-if)
-- **LO 3.4.1:** Call and use String methods (`substring`, `equals`)
-- **LO 3.5.1:** Perform arithmetic operations and type casting (integer math, modulo, `Integer.parseInt`)
+- **String Manipulation**
+    - **LO 1.15.B:** Develop code to call methods on string objects and determine the result of calling these methods.  
+        (Uses `substring` and `equals` to parse and compare input.)
+- **Arithmetic**
+    - **LO 1.3.C:** Develop code for arithmetic expressions and determine the result of these expressions.  
+        (Uses arithmetic operators such as `%`, `/`, and `+=` for dial position calculations.)
+- **Selection**
+    - **LO 2.3.A:** Develop code to represent branching logical processes by using selection statements and determine the result of these processes.  
+        (Uses `if`, `else if`, and `else` for control flow.)
+    - **LO 2.5.A:** Develop code to represent compound Boolean expressions and determine the result of these expressions.  
+        (Uses compound conditions with `&&`.)
+- **Iteration**
+    - **LO 2.7.B:** Develop code to represent iterative processes using while loops and determine the result of these processes.  
+        (Uses `while` loops for wraparound logic.)
+- **Data Collections**
+    - **LO 4.8.A:** Develop code for collections of related objects using ArrayList objects and determine the result of calling methods on these objects.  
+        (Uses `ArrayList<String>` for input.)
+    - **LO 4.9.A:** Develop code used to traverse the elements of an ArrayList and determine the results of these traversals.  
+        (Uses for-each loop to process input lines.)
+- **Wrapper Classes**
+    - **LO 4.7.A:** Develop code to use Integer and Double objects from their primitive counterparts and determine the result of using these objects.  
+        (Uses `Integer.parseInt` to convert input strings to integers.)
 
-All input is handled as `ArrayList<String>`, which is explicitly allowed in the AP subset for 2025. No Java features outside the AP subset are used.
+All input is handled as `ArrayList<String>`, and only methods and classes listed in the Java Quick Reference are used. No Java features outside the AP subset are present.
+
 
 
 ## Teaching Notes
 
-- This problem is a great opportunity to discuss the difference between naive and efficient approaches to wraparound arithmetic.
-- Have students first implement the while-loop version, then refactor to use modulo and division. This reinforces the value of both approaches and the underlying math.
-- The if-else if chain in Part 2 is a strong example for discussing multi-branch selection and how to reason about transitions between states.
-- Emphasize the use of `ArrayList<String>` for AP CSA compliance. `Integer.parseInt` is included in the AP CSA subset and can be used directly.
+- This problem provides an opportunity to discuss both naive and efficient approaches to wraparound arithmetic, reinforcing the value of understanding underlying math and control flow.
+- Students should first implement the while-loop version, then refactor to use modulo and division, highlighting the difference between iterative and arithmetic solutions.
+- The use of `if`, `else if`, and compound Boolean expressions (`&&`) demonstrates branching logic and selection, as required by the AP subset.
+- String parsing with `substring` and `equals` is fully compliant with LO 1.15.B.
+- Input is managed with `ArrayList<String>` and traversed using a for-each loop, both of which are explicitly allowed and listed in the Java Quick Reference (see Appendix of the Course and Exam Description).
+- The use of `Integer.parseInt` is compliant, as it is included in the Java Quick Reference and supports LO 4.7.A.
 
 
 ---
