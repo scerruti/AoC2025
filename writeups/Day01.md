@@ -8,11 +8,11 @@ All code is written to comply with the AP Computer Science A (AP CSA) Java subse
 
 ## Key Concepts
 
-- Iteration (for-each loop)
+- Iteration (for-each and while loops)
 - Selection (if, else if)
 - String methods (`substring`, `equals`)
-- Modulo arithmetic
-- Use of `ArrayList<String>` for input (AP CSA compliant)
+- Arithmetic (`%`, `/` and `Integer.parseInt`)
+- Use of `ArrayList<String>` for input
 
 ## Approach
 
