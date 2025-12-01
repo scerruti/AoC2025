@@ -16,9 +16,10 @@ public abstract class Day {
     }
 
     public List<String> getInputLines() {
-        String filename = String.format("resources/day%02d.txt", dayNumber);
-        try {
-            return Files.readAllLines(Path.of(filename));
+        String filename = String.format("/day%02d.txt", dayNumber);
+        try (InputStream is = getClass().getResourceAsStream(filename)) {
+            if (is == null) throw new IOException("Input file not found: " + filename);
+            return new BufferedReader(new InputStreamReader(is)).lines().toList();
         } catch (IOException e) {
             throw new RuntimeException("Could not read input file: " + filename, e);
         }
@@ -28,7 +29,7 @@ public abstract class Day {
         if (sampleFlag == null) {
             sampleFlag = System.getenv("AOC_SAMPLE");
         }
-        String filename = String.format("resources/day%02d%s.txt", day, (sampleFlag != null && sampleFlag.equalsIgnoreCase("true")) ? "-sample" : "");
+        String filename = String.format("/day%02d%s.txt", day, (sampleFlag != null && sampleFlag.equalsIgnoreCase("true")) ? "-sample" : "");
         try (InputStream is = getClass().getResourceAsStream(filename)) {
             if (is == null) throw new IOException("Input file not found: " + filename);
             return new BufferedReader(new InputStreamReader(is)).lines().toList();
@@ -41,7 +42,16 @@ public abstract class Day {
     public abstract String part2(List<String> input);
 
     public void solve() {
-        List<String> input = getInputLines();
+        List<String> input;
+        String sampleFlag = System.getProperty("aoc.sample");
+        if (sampleFlag == null) {
+            sampleFlag = System.getenv("AOC_SAMPLE");
+        }
+        if (sampleFlag != null && sampleFlag.equalsIgnoreCase("true")) {
+            input = loadInput(dayNumber);
+        } else {
+            input = getInputLines();
+        }
         long start1 = System.currentTimeMillis();
         String result1 = part1(input);
         long time1 = System.currentTimeMillis() - start1;

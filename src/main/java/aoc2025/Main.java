@@ -2,6 +2,7 @@ package aoc2025;
 
 import aoc2025.solutions.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +10,8 @@ public class Main {
         if (args.length > 0) {
             day = Integer.parseInt(args[0]);
         } else {
-            LocalDate now = LocalDate.now();
+            // Use EST (America/New_York, UTC-5) for AoC day calculation
+            LocalDate now = LocalDate.now(ZoneId.of("America/New_York"));
             // December 1-12 only
             if (now.getMonthValue() == 12 && now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 12) {
                 day = now.getDayOfMonth();
