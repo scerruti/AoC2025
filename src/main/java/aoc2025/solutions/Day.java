@@ -1,12 +1,10 @@
 package aoc2025.solutions;
 
+import java.util.ArrayList;
 import java.io.InputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
 
 public abstract class Day {
     private final int dayNumber;
@@ -15,16 +13,16 @@ public abstract class Day {
         this.dayNumber = dayNumber;
     }
 
-    public List<String> getInputLines() {
+    public ArrayList<String> getInputLines() {
         String filename = String.format("/day%02d.txt", dayNumber);
         try (InputStream is = getClass().getResourceAsStream(filename)) {
             if (is == null) throw new IOException("Input file not found: " + filename);
-            return new BufferedReader(new InputStreamReader(is)).lines().toList();
+            return new ArrayList<>(new BufferedReader(new InputStreamReader(is)).lines().toList());
         } catch (IOException e) {
             throw new RuntimeException("Could not read input file: " + filename, e);
         }
     }
-    protected List<String> loadInput(int day) {
+    protected ArrayList<String> loadInput(int day) {
         String sampleFlag = System.getProperty("aoc.sample");
         if (sampleFlag == null) {
             sampleFlag = System.getenv("AOC_SAMPLE");
@@ -32,17 +30,17 @@ public abstract class Day {
         String filename = String.format("/day%02d%s.txt", day, (sampleFlag != null && sampleFlag.equalsIgnoreCase("true")) ? "-sample" : "");
         try (InputStream is = getClass().getResourceAsStream(filename)) {
             if (is == null) throw new IOException("Input file not found: " + filename);
-            return new BufferedReader(new InputStreamReader(is)).lines().toList();
+            return new ArrayList<>(new BufferedReader(new InputStreamReader(is)).lines().toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public abstract String part1(List<String> input);
-    public abstract String part2(List<String> input);
+    public abstract String part1(ArrayList<String> input);
+    public abstract String part2(ArrayList<String> input);
 
     public void solve() {
-        List<String> input;
+        ArrayList<String> input;
         String sampleFlag = System.getProperty("aoc.sample");
         if (sampleFlag == null) {
             sampleFlag = System.getenv("AOC_SAMPLE");

@@ -1,6 +1,6 @@
 package aoc2025.solutions;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Solution for Advent of Code 2025 - Day 1.
@@ -25,7 +25,7 @@ public class Day01 extends Day {
      * @param input List of input strings, each representing a move
      * @return the number of times the dial lands on 0
      */
-    public String part1(List<String> input) {
+    public String part1(ArrayList<String> input) {
         int position = 50;
         int count = 0;
         for (String line : input) {
@@ -61,7 +61,7 @@ public class Day01 extends Day {
      * @param input List of input strings, each representing a move
      * @return the total number of times the dial passes or lands on 0
      */
-    public String part2(List<String> input) {
+    public String part2(ArrayList<String> input) {
         int position = 50;
         int count = 0;
         for (String line : input) {
@@ -70,7 +70,7 @@ public class Day01 extends Day {
 
             // Add to count for every complete 100-click rotation (each time the dial passes zero)
             count += clicks / 100;
-            // Reduce clicks to the remainder after full rotations, so only the partial move is processed below
+            // Keep only the remaining clicks after full rotations
             clicks = clicks % 100;
 
             // Determine direction
