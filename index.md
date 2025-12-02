@@ -47,10 +47,11 @@ All solutions use only:
 - [Case Studies]({{ site.baseurl }}{% link case-studies-page.md %}) - Deep dives into algorithms and teaching
 
 ### By Day
-{% for post in site.posts %}
-  {% if post.categories contains 'writeup' and post.draft != true %}
+{% assign writeup_posts = site.writeups | where_exp: "item", "item.categories contains 'writeup'" | sort: "date" %}
+{% for post in writeup_posts %}
+  {% unless post.draft == true %}
 - [{{ post.title }}]({{ post.url | relative_url }}) - {{ post.date | date: "%B %d, %Y" }}
-  {% endif %}
+  {% endunless %}
 {% endfor %}
 
 ## Learning Objectives Coverage

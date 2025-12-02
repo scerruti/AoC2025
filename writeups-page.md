@@ -9,7 +9,7 @@ permalink: /writeups/
 Browse all daily problem writeups, organized chronologically. Each writeup includes the problem approach, AP CSA compliance notes, and learning objectives addressed.
 
 <div class="post-list">
-{% assign writeup_posts = site.posts | where: "categories", "writeup" | sort: "date" %}
+{% assign writeup_posts = site.writeups | where_exp: "item", "item.categories contains 'writeup'" | sort: "date" %}
 {% for post in writeup_posts %}
   {% unless post.draft == true %}
   <article class="post-item">
