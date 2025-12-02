@@ -4,11 +4,19 @@ This repository contains my solutions and write-ups for the 2025 Advent of Code 
 
 **Note:** Solutions are written with the AP Computer Science A (AP CSA) Java subset in mind, for educational and reference purposes.
 
+## 📚 [View the Full Documentation Site](https://scerruti.github.io/AoC2025/)
+
+For complete writeups, case studies, and pedagogical notes, visit the [GitHub Pages site](https://scerruti.github.io/AoC2025/), which includes:
+- Daily problem writeups with AP CSA Learning Objective mappings
+- In-depth case studies on algorithm optimization and teaching strategies
+- Alignment with CSTA Teacher Standards
+- Browse by day, category, or learning objective tags
+
 ## Key AP CSA Learning Features (2025)
 
 This project highlights AP Computer Science A (AP CSA) concepts and learning objectives through Advent of Code problems. Each day is annotated with relevant Java subset features and AP CSA Learning Objectives (LOs).
 
-### [Day 1: Secret Entrance](writeups/Day01.md)
+### [Day 1: Secret Entrance](https://scerruti.github.io/AoC2025/writeups/Day01/)
 - **String parsing**: Using `substring` and `equals` to extract and compare characters.
 - **Integer parsing**: Using `Integer.parseInt` to convert string input to numbers.
 - **Loops**: Iterating over a `List` of input lines with an **enhanced `for` loop**.
@@ -22,7 +30,7 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **LO 4.7.A: Wrapper Classes** (`Integer.parseInt`)
     - **LO 4.8.A / 4.9.A: Data Collections** (ArrayList creation and enhanced for loop traversal)
 
-### [Day 2: Gift Shop](writeups/Day02.md)
+### [Day 2: Gift Shop](https://scerruti.github.io/AoC2025/writeups/Day02/)
 - **String Manipulation**: Extensive use of `substring` to detect repeating patterns.
 - **Arrays**: Using `split` to parse comma-separated input into arrays.
 - **Nested Loops**: Using nested iteration to test variable pattern lengths.
