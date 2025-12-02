@@ -54,7 +54,11 @@ jobs:
               is_case_study = 'Case-Study' in filename
               
               # Determine date (December of current year)
-              date_str = f"2025-12-{day_num:02d}"
+              # Day00 gets December 1st as a special case (intro/overview)
+              if day_num == 0:
+                  date_str = "2025-12-01"
+              else:
+                  date_str = f"2025-12-{day_num:02d}"
               
               # Try to extract title from first heading
               title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
