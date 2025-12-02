@@ -3,6 +3,12 @@ layout: home
 title: "Advent of Code 2025 - AP CSA Edition"
 ---
 
+<nav class="site-nav">
+  <a href="{{ site.baseurl }}/">Home</a> | 
+  <a href="{{ site.baseurl }}/writeups/">Writeups</a> | 
+  <a href="{{ site.baseurl }}/case-studies/">Case Studies</a>
+</nav>
+
 # Welcome to Advent of Code 2025 - AP CSA Edition
 
 This site documents my journey through [Advent of Code 2025](https://adventofcode.com/2025), with all solutions written to comply with the **AP Computer Science A (AP CSA) Java subset**.

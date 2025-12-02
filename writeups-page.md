@@ -4,6 +4,12 @@ title: "All Writeups"
 permalink: /writeups/
 ---
 
+<nav class="site-nav">
+  <a href="{{ site.baseurl }}/">Home</a> | 
+  <a href="{{ site.baseurl }}/writeups/">Writeups</a> | 
+  <a href="{{ site.baseurl }}/case-studies/">Case Studies</a>
+</nav>
+
 # Daily Writeups
 
 Browse all daily problem writeups, organized chronologically. Each writeup includes the problem approach, AP CSA compliance notes, and learning objectives addressed.
@@ -11,6 +17,7 @@ Browse all daily problem writeups, organized chronologically. Each writeup inclu
 <div class="post-list">
 {% assign writeup_posts = site.posts | where: "categories", "writeup" | sort: "date" %}
 {% for post in writeup_posts %}
+  {% unless post.draft == true %}
   <article class="post-item">
     <h2>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -27,5 +34,6 @@ Browse all daily problem writeups, organized chronologically. Each writeup inclu
       {% endif %}
     </p>
   </article>
+  {% endunless %}
 {% endfor %}
 </div>
