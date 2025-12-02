@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Day 1: Secret Entrance"
+date: 2025-12-01
+categories: [writeup]
+tags: [AP-CSA, modulo, iteration, arithmetic, string-methods]
+---
+
 # Day 1: Secret Entrance
 
 ## Summary

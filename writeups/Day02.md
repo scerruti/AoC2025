@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Day 2: Patterned Numbers"
+date: 2025-12-02
+categories: [writeup]
+tags: [AP-CSA, string-manipulation, patterns, long-exception]
+---
+
 # Advent of Code 2025: Day 2 Writeup
 
 ## Problem Summary
