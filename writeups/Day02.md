@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Day 2: Patterned Numbers"
+title: "Day 2: Gift Shop"
 date: 2025-12-02
 categories: [writeup]
 tags: [AP-CSA, LO-1.3.C, LO-1.15.B, LO-2.3.A, LO-2.7.B, LO-2.8.A, LO-4.3.A, LO-4.9.A, string-manipulation, patterns, long-exception]
 ---
 
-# Advent of Code 2025: Day 2 Writeup
+# Day 2: Gift Shop
 
 ## Problem Summary
 Day 2 presents a set of numeric ranges. For each part, you must process all numbers in these ranges and apply a digit pattern rule:
