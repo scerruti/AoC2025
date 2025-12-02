@@ -3,7 +3,7 @@ layout: post
 title: "Case Study: Optimizing Algorithms in AP CSA (Day 2)"
 date: 2025-12-02
 categories: [case-study]
-tags: [AP-CSA, optimization, algorithms, performance, teaching]
+tags: [AP-CSA, CSTA-1e, CSTA-3, CSTA-5a, LO-1.15.B, LO-1.3.C, LO-2.7.B, LO-2.3.A, optimization, algorithms, performance, teaching, inquiry-based-learning]
 ---
 
 # Case Study: Optimizing Algorithms in AP CSA (Advent of Code Day 2)
