@@ -1,0 +1,146 @@
+name: Sync Writeups to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'writeups/**'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  sync-writeups:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Process writeups and add YAML front matter
+        run: |
+          python3 << 'EOF'
+          import os
+          import re
+          from datetime import datetime
+          
+          def extract_day_number(filename):
+              """Extract day number from filename like Day01.md"""
+              match = re.search(r'Day(\d+)', filename)
+              return int(match.group(1)) if match else None
+          
+          def has_yaml_frontmatter(content):
+              """Check if content already has YAML front matter"""
+              return content.strip().startswith('---')
+          
+          def add_yaml_frontmatter(filename, content):
+              """Add YAML front matter if missing"""
+              if has_yaml_frontmatter(content):
+                  return content
+              
+              day_num = extract_day_number(filename)
+              if day_num is None:
+                  return content
+              
+              is_case_study = 'Case-Study' in filename
+              
+              # Determine date (December of current year)
+              date_str = f"2025-12-{day_num:02d}"
+              
+              # Try to extract title from first heading
+              title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
+              if title_match:
+                  title = title_match.group(1).strip()
+              else:
+                  title = f"Day {day_num}: TBD"
+              
+              # Determine if it's a draft (empty or placeholder content)
+              is_draft = len(content.strip()) < 200 or 'will go here' in content.lower()
+              
+              # Build YAML front matter
+              yaml = [
+                  "---",
+                  "layout: post",
+                  f'title: "{title}"',
+                  f"date: {date_str}",
+              ]
+              
+              if is_case_study:
+                  yaml.append("categories: [case-study]")
+                  yaml.append("tags: [AP-CSA, CSTA, optimization, teaching]")
+              else:
+                  yaml.append("categories: [writeup]")
+                  yaml.append("tags: [AP-CSA]")
+              
+              if is_draft:
+                  yaml.append("draft: true")
+              
+              yaml.append("---")
+              yaml.append("")
+              
+              return '\n'.join(yaml) + content
+          
+          # Process all writeup files
+          writeups_dir = 'writeups'
+          for filename in os.listdir(writeups_dir):
+              if filename.endswith('.md') and filename != 'README.md':
+                  filepath = os.path.join(writeups_dir, filename)
+                  
+                  with open(filepath, 'r', encoding='utf-8') as f:
+                      content = f.read()
+                  
+                  new_content = add_yaml_frontmatter(filename, content)
+                  
+                  if new_content != content:
+                      with open(filepath, 'w', encoding='utf-8') as f:
+                          f.write(new_content)
+                      print(f"Added YAML front matter to {filename}")
+                  else:
+                      print(f"Skipped {filename} (already has front matter)")
+          EOF
+      
+      - name: Checkout gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          git checkout gh-pages
+      
+      - name: Copy writeups to _writeups directory
+        run: |
+          # Remove old _writeups content (except README.md if it exists)
+          if [ -d "_writeups" ]; then
+            find _writeups -type f -name "*.md" ! -name "README.md" -delete
+          else
+            mkdir -p _writeups
+          fi
+          
+          # Copy from main branch
+          git checkout main -- writeups/
+          
+          # Move files to _writeups
+          cp writeups/*.md _writeups/ 2>/dev/null || true
+          
+          # Clean up temporary writeups directory
+          rm -rf writeups
+      
+      - name: Commit and push changes
+        run: |
+          git add _writeups/
+          
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-sync writeups from main branch [skip ci]"
+            git push origin gh-pages
+            echo "✅ Writeups synced to gh-pages successfully!"
+          fi
