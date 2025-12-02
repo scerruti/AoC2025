@@ -11,7 +11,7 @@ Browse all daily problem writeups, organized chronologically. Each writeup inclu
 <div class="post-list">
 {% assign writeup_posts = site.writeups | where_exp: "item", "item.categories contains 'writeup'" | sort: "date" %}
 {% for post in writeup_posts %}
-  {% unless post.draft == true %}
+{% unless post.draft == true %}
   <article class="post-item">
     <h2>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
