@@ -43,8 +43,8 @@ All solutions use only:
 ## Browse Content
 
 ### By Category
-- [All Writeups]({{ site.baseurl }}{% link writeups.md %}) - Daily problem solutions
-- [Case Studies]({{ site.baseurl }}{% link case-studies.md %}) - Deep dives into algorithms and teaching
+- [All Writeups]({{ site.baseurl }}{% link writeups-page.md %}) - Daily problem solutions
+- [Case Studies]({{ site.baseurl }}{% link case-studies-page.md %}) - Deep dives into algorithms and teaching
 
 ### By Day
 {% for post in site.posts %}
