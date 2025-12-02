@@ -1,0 +1,58 @@
+title: "Advent of Code 2025 - AP CSA Edition"
+description: "Solutions and writeups compliant with AP Computer Science A Java subset"
+baseurl: "/AoC2025"
+url: "https://scerruti.github.io"
+theme: minima
+
+# Author information
+author:
+  name: Stephen Cerruti
+  email: scerruti@users.noreply.github.com
+
+# Collections configuration
+collections:
+  writeups:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "writeups"
+    values:
+      layout: "post"
+  - scope:
+      path: "writeups"
+      type: "pages"
+    values:
+      layout: "post"
+
+# Build settings
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: java
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .gitignore
+  - src/
+  - target/
+  - pom.xml
+  - .vscode/
+  - .github/
+  - resources/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+
+# Include writeups directory
+include:
+  - writeups/
