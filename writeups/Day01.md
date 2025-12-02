@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Day 1: Secret Entrance"
+date: 2025-12-01
+categories: [writeup]
+tags: [AP-CSA, LO-1.3.C, LO-1.15.B, LO-2.3.A, LO-2.5.A, LO-2.7.B, LO-4.7.A, LO-4.8.A, LO-4.9.A, modulo, iteration, arithmetic, string-methods]
+---
+
 # Day 1: Secret Entrance
 
 ## Summary
