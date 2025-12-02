@@ -52,6 +52,7 @@ jobs:
                   return content
               
               is_case_study = 'Case-Study' in filename
+              is_interview = 'Interview' in filename
               
               # Determine date (December of current year)
               # Day00 gets December 1st as a special case (intro/overview)
@@ -78,7 +79,10 @@ jobs:
                   f"date: {date_str}",
               ]
               
-              if is_case_study:
+              if is_interview:
+                  yaml.append("categories: [case-study, introduction]")
+                  yaml.append("tags: [AP-CSA, CSTA, interview, advent-of-code, introduction]")
+              elif is_case_study:
                   yaml.append("categories: [case-study]")
                   yaml.append("tags: [AP-CSA, CSTA, optimization, teaching]")
               else:
