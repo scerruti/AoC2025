@@ -3,7 +3,7 @@ layout: post
 title: "Case Study: From Naive Loops to Infinite Tapes (Day 1)"
 date: 2025-12-01
 categories: [case-study]
-tags: [AP-CSA, optimization, refactoring, teaching, modulo]
+tags: [AP-CSA, CSTA-1a, CSTA-1e, CSTA-3, optimization, refactoring, teaching, modulo, professional-growth]
 ---
 
 # Case Study: From Naive Loops to Infinite Tapes (AoC 2025 Day 1)
