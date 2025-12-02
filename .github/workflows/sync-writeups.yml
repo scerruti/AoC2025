@@ -112,6 +112,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Stash any changes from previous steps
+          git add -A
+          git stash
           git fetch origin gh-pages
           git checkout gh-pages
       
