@@ -1,4 +1,4 @@
-# Day 1: Dial Simulation
+# Day 1: Secret Entrance
 
 ## Summary
 
