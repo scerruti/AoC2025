@@ -57,7 +57,3 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor/
-
-# Include writeups directory
-include:
-  - writeups/
