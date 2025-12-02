@@ -1,14 +1,8 @@
 ---
 layout: page
-title: "All Writeups"
+title: "Writeups"
 permalink: /writeups/
 ---
-
-<nav class="site-nav">
-  <a href="{{ site.baseurl }}/">Home</a> | 
-  <a href="{{ site.baseurl }}/writeups/">Writeups</a> | 
-  <a href="{{ site.baseurl }}/case-studies/">Case Studies</a>
-</nav>
 
 # Daily Writeups
 

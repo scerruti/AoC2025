@@ -4,12 +4,6 @@ title: "Case Studies"
 permalink: /case-studies/
 ---
 
-<nav class="site-nav">
-  <a href="{{ site.baseurl }}/">Home</a> | 
-  <a href="{{ site.baseurl }}/writeups/">Writeups</a> | 
-  <a href="{{ site.baseurl }}/case-studies/">Case Studies</a>
-</nav>
-
 # Case Studies
 
 In-depth explorations of algorithm design, optimization techniques, and teaching strategies. These case studies document the journey from naive solutions to optimized implementations, with pedagogical insights aligned with CSTA Teacher Standards.
