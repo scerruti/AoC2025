@@ -88,36 +88,42 @@ public class Day02 extends Day {
             long lower = Long.parseLong(bounds[0]); // AP CSA exception: must use long
             long upper = Long.parseLong(bounds[1]);
 
+            sum += InvalidIdCalculator.sumInvalidIds(lower, upper);
+
             // Iterate through all numbers in the range
-            for (long i = lower; i <= upper; i++) {
-                String s = String.valueOf(i);
-                int l = s.length();
+            // for (long i = lower; i <= upper; i++) {
+            //     if (PatternMatcher.hasRepeatingPattern(i)) {
+            //         sum += i;
+            //         continue; // Only count each number once
+            //     }
+                // String s = String.valueOf(i);
+                // int l = s.length();
 
-                // Try all possible pattern lengths
-                for (int patternLength = 1; patternLength <= l / 2; patternLength++) {
-                    // Only consider pattern lengths that divide the string evenly
-                    if (l % patternLength != 0) {
-                        continue;
-                    }
+                // // Try all possible pattern lengths
+                // for (int patternLength = 1; patternLength <= l / 2; patternLength++) {
+                //     // Only consider pattern lengths that divide the string evenly
+                //     if (l % patternLength != 0) {
+                //         continue;
+                //     }
 
-                    String pattern = s.substring(0, patternLength);
-                    boolean allMatch = true;
+                //     String pattern = s.substring(0, patternLength);
+                //     boolean allMatch = true;
 
-                    // Check if the pattern repeats throughout the string
-                    for (int j = 1; j < l / patternLength; j++) {
-                        if (!pattern.equals(s.substring(j * patternLength, (j + 1) * patternLength))) {
-                            allMatch = false;
-                            break;
-                        }
-                    }
+                //     // Check if the pattern repeats throughout the string
+                //     for (int j = 1; j < l / patternLength; j++) {
+                //         if (!pattern.equals(s.substring(j * patternLength, (j + 1) * patternLength))) {
+                //             allMatch = false;
+                //             break;
+                //         }
+                //     }
 
-                    // Add and break if a repeated pattern is found
-                    if (allMatch) {
-                        sum += i;
-                        break; // Only count each number once
-                    }
-                }
-            }
+                //     // Add and break if a repeated pattern is found
+                //     if (allMatch) {
+                //         sum += i;
+                //         break; // Only count each number once
+                //     }
+                // }
+            // }
         }
 
         return String.valueOf(sum);
