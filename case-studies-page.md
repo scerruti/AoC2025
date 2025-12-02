@@ -11,7 +11,6 @@ In-depth explorations of algorithm design, optimization techniques, and teaching
 <div class="post-list">
 {% assign case_study_posts = site.writeups | where_exp: "item", "item.categories contains 'case-study'" | sort: "date" %}
 {% for post in case_study_posts %}
-{% unless post.draft == true %}
   <article class="post-item">
     <h2>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -28,7 +27,6 @@ In-depth explorations of algorithm design, optimization techniques, and teaching
       {% endif %}
     </p>
   </article>
-  {% endunless %}
 {% endfor %}
 </div>
 

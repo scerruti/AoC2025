@@ -49,9 +49,7 @@ All solutions use only:
 ### By Day
 {% assign writeup_posts = site.writeups | where_exp: "item", "item.categories contains 'writeup'" | sort: "date" %}
 {% for post in writeup_posts %}
-{% unless post.draft == true %}
 - [{{ post.title }}]({{ post.url | relative_url }}) - {{ post.date | date: "%B %d, %Y" }}
-{% endunless %}
 {% endfor %}
 
 ## Learning Objectives Coverage
