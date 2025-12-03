@@ -15,9 +15,9 @@ tags: [AP-CSA, LO-1.3.C, LO-1.15.B, LO-2.3.A, LO-2.7.B, LO-2.8.A, LO-4.1.A, LO-4
 Day 3 involves processing strings of digits representing batteries in a battery bank. The goal is to select batteries that produce the maximum voltage when read as a multi-digit number:
 
 - **Part 1:** Select exactly 2 batteries (digits) from each bank that form the largest 2-digit number when read in order.
-- **Part 2:** Select exactly 12 batteries (digits) from each bank that form the largest 12-digit number while maintaining their original left-to-right order.
+- **Part 2:** Select exactly $k = 12$ batteries (digits) from each bank that form the largest $k$-digit number while maintaining their original left-to-right order.
 
-The key constraint is that you cannot rearrange the batteries—you can only choose which ones to keep or skip, and the selected batteries must remain in their original sequence.
+The key constraint is that you cannot rearrange the batteries—you can only choose which ones to keep or skip, and the selected batteries must remain in their original sequence. Formally, given a sequence $S = d_1d_2...d_n$ of $n$ digits, find a subsequence of length $k$ that maximizes the resulting decimal number.
 
 ## AP CSA Subset Compliance
 
@@ -37,7 +37,7 @@ The approach iterates through the battery string, tracking potential "tens" and 
    - Check if the previous digit is larger than the current "tens" digit.
    - If so, update both "tens" (to the previous digit) and "ones" (to the current digit).
    - Otherwise, check if the current digit is larger than "ones" and update if needed.
-3. Return the 2-digit number formed by multiplying "tens" by 10 and adding "ones".
+3. Return the 2-digit number formed by $10 \times \text{tens} + \text{ones}$.
 
 This greedy approach ensures we always capture the largest possible consecutive pair.
 
@@ -65,14 +65,14 @@ public int maxJoltage() {
 
 ### Part 2: Greedy Subsequence Selection
 
-Part 2 uses a greedy algorithm to select the largest subsequence of 12 digits:
+Part 2 uses a greedy algorithm to select the largest subsequence of $k = 12$ digits:
 
-1. Track how many digits we've selected (`selectedCount`) and how many we can still skip (`toSkip`).
-2. For each digit in the original string:
-   - **Greedy decision:** If the current digit is larger than previously selected digits, and we still have skips available, remove those smaller digits and prepare to add the current one.
-   - Add the current digit if we haven't selected enough yet.
-   - Otherwise, skip the current digit.
-3. Build the final number by multiplying accumulated digits by 10 and adding each selected digit.
+1. Track how many digits we've selected (`selectedCount`) and how many we can still skip (`toSkip = n - k`).
+2. For each digit $d_i$ in the original string:
+   - **Greedy decision:** If $d_i$ is larger than previously selected digits, and we still have skips available, remove those smaller digits and prepare to add $d_i$.
+   - Add $d_i$ if we haven't selected $k$ digits yet.
+   - Otherwise, skip $d_i$.
+3. Build the final number using $\text{result} = \sum_{i=0}^{k-1} \text{selected}_i \times 10^{k-1-i}$.
 
 This algorithm ensures that at each step, we maintain the largest possible leading digits.
 
@@ -137,8 +137,8 @@ This solution addresses the following official AP Computer Science A Learning Ob
 
 ## Algorithm Complexity
 
-- **Part 1:** O(n) where n is the length of the battery string—single pass through the digits.
-- **Part 2:** O(n × k) in the worst case, where n is the string length and k is the number of batteries to select. The `while` loop inside the `for` loop can remove up to k elements total across all iterations, making the overall complexity linear in practice.
+- **Part 1:** $O(n)$ where $n$ is the length of the battery string—single pass through the digits.
+- **Part 2:** $O(n \times k)$ in the worst case, where $n$ is the string length and $k$ is the number of batteries to select. The `while` loop inside the `for` loop can remove up to $k$ elements total across all iterations, making the overall complexity linear in practice: $O(n + k) = O(n)$ since $k \leq n$.
 
 ---
 
