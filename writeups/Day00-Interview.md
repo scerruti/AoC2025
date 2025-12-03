@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Interview: Introduction to Advent of Code"
+date: 2025-12-01
+categories: [case-study, introduction]
+tags: [AP-CSA, CSTA, interview, advent-of-code, introduction]
+---
+
 # Interview: Introduction to Advent of Code
 
 *A conversation with Mr. Cerruti about participating in Advent of Code with AP CSA constraints*
@@ -5,8 +13,6 @@
 **Reading Time:** 5-7 minutes for teachers | 4-5 minutes for students
 
 **Note:** This interview format was created using AI to simulate student reporter questions, with Mr. Cerruti providing authentic responses about his Advent of Code participation and teaching philosophy. The conversational format is designed to make the information more accessible and engaging.
-
----
 
 ## The Interview
 
