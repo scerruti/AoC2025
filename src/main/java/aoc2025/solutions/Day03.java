@@ -7,13 +7,23 @@ public class Day03 extends Day {
 
     @Override
     public String part1(ArrayList<String> input) {
-        // TODO: Implement Part 1
-        return "";
+        int joltage = 0;
+        for (String bank : input) {
+            int j = Bank.maxJoltage(bank);
+            System.out.println(j);
+            joltage += j;
+        }
+        return String.valueOf(joltage);
     }
 
     @Override
     public String part2(ArrayList<String> input) {
-        // TODO: Implement Part 2
-        return "";
+        long joltage = 0;
+        for (String bank : input) {
+            long j = Bank.maxJoltage(bank, 12);
+            System.out.println(j);
+            joltage += j;
+        }
+        return String.valueOf(joltage);
     }
 }
