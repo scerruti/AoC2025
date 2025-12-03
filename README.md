@@ -42,6 +42,19 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **LO 2.7.B / 2.8.A: Iteration** (nested `for` loops)
     - **LO 4.3.A / 4.4.A: Arrays** (1D array creation and traversal)
 
+### [Day 3: Lobby](https://scerruti.github.io/AoC2025/writeups/Day03/)
+- **Greedy Algorithms**: Selecting optimal subsequences from sequences while maintaining order.
+- **Array Manipulation**: Using arrays to store and dynamically adjust selected elements.
+- **String to Integer Conversion**: Parsing individual digits with `Integer.parseInt` and `substring`.
+- **Data Types**: Using `long` (exception to subset) for 12-digit numbers in Part 2.
+- **AP CSA LOs:**
+    - **LO 1.3.C: Arithmetic Expressions** (arithmetic with array indices)
+    - **LO 1.15.B: String Methods** (`substring`, `length`)
+    - **LO 2.3.A: Selection** (`if`, `else` statements)
+    - **LO 2.7.B / 2.8.A: Iteration** (`while` and `for` loops)
+    - **LO 4.1.A / 4.2.A: 1D Arrays** (array creation and traversal)
+    - **LO 4.9.A: ArrayList Traversal** (input processing)
+
 ## About
 
 - See [Advent of Code](https://adventofcode.com) for event details and rules.
