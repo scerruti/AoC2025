@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Day 4: Warehouse"
+title: "Day 4: Printing Department"
 date: 2025-12-04
 categories: [writeup]
 tags: [AP-CSA, LO-1.3.C, LO-2.3.A, LO-2.7.B, LO-2.8.A, LO-4.1.A, LO-4.2.A, LO-4.9.A, 2D-arrays, simulation, cellular-automaton, debugging]
 ---
 
-# Day 4: Warehouse
+# Day 4: Printing Department
 
 > **Note:** This writeup was generated with assistance from GitHub Copilot (Claude Sonnet 4.5) to document the solution and pedagogical approach.
 
