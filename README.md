@@ -48,6 +48,18 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
 - **String to Integer Conversion**: Parsing individual digits with `Integer.parseInt` and `substring`.
 - **Data Types**: Using `long` (exception to subset) for 12-digit numbers in Part 2.
 - **AP CSA LOs:**
+
+### [Day 4: Printing Department](https://scerruti.github.io/AoC2025/writeups/Day04/)
+- **2D Arrays**: Using padded 2D arrays to eliminate boundary checking.
+- **Cellular Automaton**: Simulating state changes based on neighbor counts.
+- **Two-Phase Updates**: Mark-then-remove pattern to avoid state corruption.
+- **Nested Loops**: Iterating through 2D grid structures.
+- **AP CSA LOs:**
+    - **LO 1.3.C: Arithmetic Expressions** (neighbor counting)
+    - **LO 2.3.A: Selection** (conditional neighbor checks)
+    - **LO 2.7.B / 2.8.A: Iteration** (nested loops for 2D traversal)
+    - **LO 4.1.A / 4.2.A: 2D Arrays** (creation, traversal, modification)
+    - **LO 4.9.A: Data Collections** (ArrayList for input parsing)
     - **LO 1.3.C: Arithmetic Expressions** (arithmetic with array indices)
     - **LO 1.15.B: String Methods** (`substring`, `length`)
     - **LO 2.3.A: Selection** (`if`, `else` statements)
