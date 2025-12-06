@@ -6,6 +6,9 @@ import java.util.Scanner;
 // import java.util.stream.Collectors;
 
 public class Day06 extends Day {
+    private static final String MULTIPLY = "*";
+    private static final String ADD = "+";
+    
     public Day06() {
         super(6);
     }
@@ -47,13 +50,10 @@ public class Day06 extends Day {
 
         long grandTotal = 0;
         for (int problemIndex = 0; problemIndex < problemCount; problemIndex++) {
-            long result = 0;
-            if (operators[problemIndex].equals("*")) {
-                result = 1;
-            }
+            long result = operators[problemIndex].equals(MULTIPLY) ? 1 : 0;
 
             for (int numberIndex = 0; numberIndex < rowCount; numberIndex++) {
-                if (operators[problemIndex].equals("*")) {
+                if (operators[problemIndex].equals(MULTIPLY)) {
                     result *= problems[problemIndex][numberIndex];
                 } else {
                     result += problems[problemIndex][numberIndex];
@@ -115,18 +115,15 @@ public class Day06 extends Day {
 
             for (int row = 0; row < rowCount; row++) {
                 for (int digitPos = columnWidth - 1; digitPos >= 0 ; digitPos--) {
-                    if (operands[problemIndex][row].substring(digitPos, digitPos+1).equals(" ")) continue;
+                    if (operands[problemIndex][row].charAt(digitPos) == ' ') continue;
                     numbers[digitPos] = numbers[digitPos] * 10 + Integer.parseInt(operands[problemIndex][row].substring(digitPos, digitPos+1));
                 }
             }
 
-            long result = 0;
-            if (operators[problemIndex].equals("*")) {
-                result = 1;
-            }
+            long result = operators[problemIndex].equals(MULTIPLY) ? 1 : 0;
 
             for (int numberIndex = 0; numberIndex < columnWidth; numberIndex++) {
-                if (operators[problemIndex].equals("*")) {
+                if (operators[problemIndex].equals(MULTIPLY)) {
                     result *= numbers[numberIndex];
                 } else {
                     result += numbers[numberIndex];
