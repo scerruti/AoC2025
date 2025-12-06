@@ -15,20 +15,20 @@ public class Day06 extends Day {
         int problemCount = input.get(0).replaceAll("\\s+", " ").trim().split(" ").length;
 
         long[][] problems = new long[problemCount][rowCount];
-        for (int i = 0; i < rowCount; i++) {
-            // System.out.print(input.get(i) + ": ");
+        for (int row = 0; row < rowCount; row++) {
+            // System.out.print(input.get(row) + ": ");
             // I fell into a trap here if trying to split by " " but there are multiple
             // spaces
             // I could have avoided the regular expression by reading the data with Scanner
             // I also did not observe I needed to trim the string before processing to
             // remove leading spaces
-            String normalizedLine = input.get(i).replaceAll("\\s+", " ").trim();
+            String normalizedLine = input.get(row).replaceAll("\\s+", " ").trim();
             // System.out.print(normalizedLine + ": ");
             // System.out.print("[" + problems.length + "] ");
             String[] numbersInRow = normalizedLine.split(" ");
-            for (int j = 0; j < problemCount; j++) {
-                problems[j][i] = Long.parseLong(numbersInRow[j]);
-                // System.out.print("|" + problems[j][i] + "| ");
+            for (int problemIndex = 0; problemIndex < problemCount; problemIndex++) {
+                problems[problemIndex][row] = Long.parseLong(numbersInRow[problemIndex]);
+                // System.out.print("|" + problems[problemIndex][row] + "| ");
             }
             // System.out.println();
         }
@@ -36,22 +36,22 @@ public class Day06 extends Day {
         // System.out.println(Arrays.toString(operators));
 
         long grandTotal = 0;
-        for (int i = 0; i < problemCount; i++) {
+        for (int problemIndex = 0; problemIndex < problemCount; problemIndex++) {
             long result = 0;
-            if (operators[i].equals("*")) {
+            if (operators[problemIndex].equals("*")) {
                 result = 1;
             }
 
-            for (int j = 0; j < rowCount; j++) {
-                if (operators[i].equals("*")) {
-                    result *= problems[i][j];
+            for (int numberIndex = 0; numberIndex < rowCount; numberIndex++) {
+                if (operators[problemIndex].equals("*")) {
+                    result *= problems[problemIndex][numberIndex];
                 } else {
-                    result += problems[i][j];
+                    result += problems[problemIndex][numberIndex];
                 }
             }
-            // System.out.println(Arrays.stream(problems[i])
+            // System.out.println(Arrays.stream(problems[problemIndex])
             // .mapToObj(String::valueOf)
-            // .collect(Collectors.joining(" "+operators[i]+" ")) + " = " + result);
+            // .collect(Collectors.joining(" "+operators[problemIndex]+" ")) + " = " + result);
             grandTotal += result;
         }
 
@@ -88,43 +88,43 @@ public class Day06 extends Day {
         // We will still break out the data but we will keep it as a string to preserve
         // the data.
         String[][] operands = new String[problemCount][rowCount];
-        for (int i = 0; i < rowCount; i++) {
-            String line = input.get(i);
-            for (int j = 0; j < problemCount; j++) {
-                operands[j][i] = line.substring(problemColumns[j], problemColumns[j + 1] - 1);
-                // System.out.print("|" + operands[j][i] + "| ");
+        for (int row = 0; row < rowCount; row++) {
+            String line = input.get(row);
+            for (int problemIndex = 0; problemIndex < problemCount; problemIndex++) {
+                operands[problemIndex][row] = line.substring(problemColumns[problemIndex], problemColumns[problemIndex + 1] - 1);
+                // System.out.print("|" + operands[problemIndex][row] + "| ");
             }
             // System.out.println();
         }
 
         // Now let's loop through each problem and do the math.
         long grandTotal = 0;
-        for (int i = problemCount - 1; i >= 0 ; i--) {
-            int columnWidth = problemColumns[i+1] - problemColumns[i] - 1;
+        for (int problemIndex = problemCount - 1; problemIndex >= 0 ; problemIndex--) {
+            int columnWidth = problemColumns[problemIndex+1] - problemColumns[problemIndex] - 1;
             long[] numbers = new long[columnWidth];
 
-            for (int j = 0; j < rowCount; j++) {
-                for (int o = columnWidth - 1; o >= 0 ; o--) {
-                    if (operands[i][j].substring(o, o+1).equals(" ")) continue;
-                    numbers[o] = numbers[o] * 10 + Integer.parseInt(operands[i][j].substring(o, o+1));
+            for (int row = 0; row < rowCount; row++) {
+                for (int digitPos = columnWidth - 1; digitPos >= 0 ; digitPos--) {
+                    if (operands[problemIndex][row].substring(digitPos, digitPos+1).equals(" ")) continue;
+                    numbers[digitPos] = numbers[digitPos] * 10 + Integer.parseInt(operands[problemIndex][row].substring(digitPos, digitPos+1));
                 }
             }
 
             long result = 0;
-            if (operators[i].equals("*")) {
+            if (operators[problemIndex].equals("*")) {
                 result = 1;
             }
 
-            for (int j = 0; j < columnWidth; j++) {
-                if (operators[i].equals("*")) {
-                    result *= numbers[j];
+            for (int numberIndex = 0; numberIndex < columnWidth; numberIndex++) {
+                if (operators[problemIndex].equals("*")) {
+                    result *= numbers[numberIndex];
                 } else {
-                    result += numbers[j];
+                    result += numbers[numberIndex];
                 }
             }
             // System.out.println(Arrays.stream(numbers)
             // .mapToObj(String::valueOf)
-            // .collect(Collectors.joining(" "+operators[i]+" ")) + " = " + result);
+            // .collect(Collectors.joining(" "+operators[problemIndex]+" ")) + " = " + result);
             grandTotal += result;
         }
 
