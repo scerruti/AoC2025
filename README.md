@@ -60,12 +60,18 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **LO 2.7.B / 2.8.A: Iteration** (nested loops for 2D traversal)
     - **LO 4.1.A / 4.2.A: 2D Arrays** (creation, traversal, modification)
     - **LO 4.9.A: Data Collections** (ArrayList for input parsing)
-    - **LO 1.3.C: Arithmetic Expressions** (arithmetic with array indices)
-    - **LO 1.15.B: String Methods** (`substring`, `length`)
-    - **LO 2.3.A: Selection** (`if`, `else` statements)
-    - **LO 2.7.B / 2.8.A: Iteration** (`while` and `for` loops)
-    - **LO 4.1.A / 4.2.A: 1D Arrays** (array creation and traversal)
-    - **LO 4.9.A: ArrayList Traversal** (input processing)
+
+### [Day 5: Cafeteria](https://scerruti.github.io/AoC2025/writeups/Day05/)
+- **State Machine Pattern**: Using boolean flag (`rangesDone`) to track parsing phases.
+- **Object-Oriented Design**: Range class with encapsulation and helper methods.
+- **Interval Merging**: Incremental range merging algorithm for Part 2.
+- **Code.org Framework**: Structured problem-solving (Understand → Plan → Try → Reflect).
+- **AP CSA LOs:**
+    - **LO 1.3.C: Arithmetic Expressions** (range size calculations)
+    - **LO 2.3.A: Selection** (if/else for case analysis)
+    - **LO 2.7.B / 2.8.A: Iteration** (enhanced for loops, early exit with break)
+    - **LO 4.1.A: Object-Oriented Design** (Range class, inheritance from Day)
+    - **LO 4.8.A / 4.9.A: Data Collections** (ArrayList creation and traversal)
 
 ## About
 
