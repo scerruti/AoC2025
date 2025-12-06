@@ -60,53 +60,53 @@ public class Day06 extends Day {
 
     @Override
     public String part2(ArrayList<String> input) {
-        int numberOfDigits = input.size() - 1;
+        int rowCount = input.size() - 1;
 
         // Spaces are now important. It seems like we need to determine the number of
         // columns each row
         // uses to represent a number. We'll use the operands row to determine the
         // number of problems for safety.
-        String[] operators = input.get(numberOfDigits).replaceAll("\\s+", " ").trim().split(" ");
-        int numberOfProblems = operators.length;
+        String[] operators = input.get(rowCount).replaceAll("\\s+", " ").trim().split(" ");
+        int problemCount = operators.length;
 
         // We need to build up a list of the first column of each term. This can be
         // tricky because terms
         // can begin with a space. But we can use the operators to do this since the
         // operator is in the
         // leftmost column.
-        int[] termColumns = new int[numberOfProblems + 1];
-        String operatorLine = input.get(numberOfDigits);
+        int[] problemColumns = new int[problemCount + 1];
+        String operatorLine = input.get(rowCount);
         int index = 0;
         int position = -1;
         while ((position = findNextOperatorIndex(operatorLine, position + 1)) != -1) {
-            termColumns[index] = position;
+            problemColumns[index] = position;
             index += 1;
         }
         // It will simplify code later on to have an extra term column
-        termColumns[index] = operatorLine.length() + 1;
+        problemColumns[index] = operatorLine.length() + 1;
 
         // We will still break out the data but we will keep it as a string to preserve
         // the data.
-        String[][] operands = new String[numberOfProblems][numberOfDigits];
-        for (int i = 0; i < numberOfDigits; i++) {
+        String[][] operands = new String[problemCount][rowCount];
+        for (int i = 0; i < rowCount; i++) {
             String line = input.get(i);
-            for (int j = 0; j < numberOfProblems; j++) {
-                operands[j][i] = line.substring(termColumns[j], termColumns[j + 1] - 1);
+            for (int j = 0; j < problemCount; j++) {
+                operands[j][i] = line.substring(problemColumns[j], problemColumns[j + 1] - 1);
                 // System.out.print("|" + operands[j][i] + "| ");
             }
             // System.out.println();
         }
 
         // Now let's loop through each problem and do the math.
-        long sum = 0;
-        for (int i = numberOfProblems - 1; i >= 0 ; i--) {
-            int numberOfOperands = termColumns[i+1] - termColumns[i] - 1;
-            long[] humanOps = new long[numberOfOperands];
+        long grandTotal = 0;
+        for (int i = problemCount - 1; i >= 0 ; i--) {
+            int columnWidth = problemColumns[i+1] - problemColumns[i] - 1;
+            long[] numbers = new long[columnWidth];
 
-            for (int j = 0; j < numberOfDigits; j++) {
-                for (int o = numberOfOperands - 1; o >= 0 ; o--) {
+            for (int j = 0; j < rowCount; j++) {
+                for (int o = columnWidth - 1; o >= 0 ; o--) {
                     if (operands[i][j].substring(o, o+1).equals(" ")) continue;
-                    humanOps[o] = humanOps[o] * 10 + Integer.parseInt(operands[i][j].substring(o, o+1));
+                    numbers[o] = numbers[o] * 10 + Integer.parseInt(operands[i][j].substring(o, o+1));
                 }
             }
 
@@ -115,20 +115,20 @@ public class Day06 extends Day {
                 result = 1;
             }
 
-            for (int j = 0; j < numberOfOperands; j++) {
+            for (int j = 0; j < columnWidth; j++) {
                 if (operators[i].equals("*")) {
-                    result *= humanOps[j];
+                    result *= numbers[j];
                 } else {
-                    result += humanOps[j];
+                    result += numbers[j];
                 }
             }
-            // System.out.println(Arrays.stream(humanOps)
+            // System.out.println(Arrays.stream(numbers)
             // .mapToObj(String::valueOf)
             // .collect(Collectors.joining(" "+operators[i]+" ")) + " = " + result);
-            sum += result;
+            grandTotal += result;
         }
 
-        return String.valueOf(sum);
+        return String.valueOf(grandTotal);
     }
 
     public static int findNextOperatorIndex(String operatorLine, int position) {
