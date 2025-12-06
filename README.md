@@ -73,6 +73,25 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **LO 4.1.A: Object-Oriented Design** (Range class, inheritance from Day)
     - **LO 4.8.A / 4.9.A: Data Collections** (ArrayList creation and traversal)
 
+### [Day 6: Trash Compactor](https://scerruti.github.io/AoC2025/writeups/Day06/)
+- **Scanner Class**: Whitespace-tolerant parsing without regex (AP CSA compliant).
+- **2D Arrays**: Organizing data by problem and number position.
+- **Identity Values**: Mathematical foundations for multiplication (1) and addition (0).
+- **Cross-Species Communication**: Same data, different parsing strategies (educational metaphor).
+- **AP CSA LOs:**
+    - **MOD-1.C**: Call methods on objects (Scanner methods)
+    - **MOD-1.E**: Evaluate expressions using relational operators
+    - **CON-2.A.1**: Use conditional statements (if/else, ternary)
+    - **CON-2.B**: Represent iterative processes (nested loops)
+    - **VAR-2.E.1 / VAR-2.E.2**: Create and traverse 2D arrays
+    - **VAR-2.F**: Work with wrapper classes (Integer.parseInt)
+- **CSTA Standards for CS Teachers:**
+    - **2A**: Plan learning experiences advancing programming knowledge
+    - **2B**: Use effective instructional strategies (Scanner comparison)
+    - **2C**: Develop students' testing and refinement abilities
+    - **3A**: Design assessments measuring student learning
+    - **5B**: Model inclusive practices (diverse perspectives metaphor)
+
 ## About
 
 - See [Advent of Code](https://adventofcode.com) for event details and rules.
