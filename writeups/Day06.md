@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Day 6: Trash Compactor"
+date: 2025-12-06
+categories: [writeup]
+tags: [AP-CSA, CSTA, MOD-1.C, MOD-1.E, CON-2.A.1, CON-2.B, VAR-2.E.1, VAR-2.E.2, VAR-2.F, Scanner, 2D-arrays, identity-values, parsing, nested-loops]
+---
+
 # Day 6: The Trash Compactor Math Puzzle
 
 ## A Story of Scanner, 2D Arrays, and Cross-Species Communication
