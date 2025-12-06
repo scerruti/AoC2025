@@ -36,7 +36,6 @@ public class Day06 extends Day {
         // System.out.println(Arrays.toString(operators));
 
         long sum = 0;
-
         for (int i = 0; i < numberOfProblems; i++) {
             long result = 0;
             if (operators[i].equals("*")) {
@@ -116,8 +115,6 @@ public class Day06 extends Day {
                 result = 1;
             }
 
-            
-
             for (int j = 0; j < numberOfOperands; j++) {
                 if (operators[i].equals("*")) {
                     result *= humanOps[j];
@@ -130,8 +127,6 @@ public class Day06 extends Day {
             // .collect(Collectors.joining(" "+operators[i]+" ")) + " = " + result);
             sum += result;
         }
-
-
 
         return String.valueOf(sum);
     }
