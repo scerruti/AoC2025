@@ -131,6 +131,8 @@ jobs:
           # Remove old _writeups content (except README.md if it exists)
           if [ -d "_writeups" ]; then
             find _writeups -type f -name "*.md" ! -name "README.md" -delete
+            find _writeups -type f -name "*.png" -delete
+            find _writeups -type f -name "*.jpg" -delete
           else
             mkdir -p _writeups
           fi
@@ -138,8 +140,12 @@ jobs:
           # Copy from main branch
           git checkout main -- writeups/
           
-          # Move files to _writeups
+          # Move markdown files to _writeups
           cp writeups/*.md _writeups/ 2>/dev/null || true
+          
+          # Move image files (PNG, JPG) to _writeups
+          cp writeups/*.png _writeups/ 2>/dev/null || true
+          cp writeups/*.jpg _writeups/ 2>/dev/null || true
           
           # Clean up temporary writeups directory
           rm -rf writeups
