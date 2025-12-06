@@ -1,8 +1,8 @@
 package aoc2025.solutions;
 
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+// import java.util.stream.Collectors;
 
 
 public class Day06 extends Day {
@@ -10,33 +10,32 @@ public class Day06 extends Day {
 
     @Override
     public String part1(ArrayList<String> input) {
-        // TODO: Change int to long - test case passes but real data overflows int range
         int numberOfOperands = input.size() - 1;
         int numberOfProblems = input.get(0).replaceAll("\\s+", " ").trim().split(" ").length;
 
-        int[][] operands = new int[numberOfProblems][numberOfOperands];
+        long[][] operands = new long[numberOfProblems][numberOfOperands];
         for (int i = 0; i < numberOfOperands; i++) {
-            System.out.print(input.get(i) + ": ");
+            // System.out.print(input.get(i) + ": ");
             // I fell into a trap here if trying to split by " " but there are multiple spaces
             // I could have avoided the regular expression by reading the data with Scanner
             // I also did not observe I needed to trim the string before processing to remove leading spaces
             String normalizedLine = input.get(i).replaceAll("\\s+", " ").trim();
-            System.out.print(normalizedLine + ": ");
-            System.out.print("[" + operands.length + "] ");
+            // System.out.print(normalizedLine + ": ");
+            // System.out.print("[" + operands.length + "] ");
             String[] problemsOperandRow = normalizedLine.split(" ");
             for (int j = 0; j < numberOfProblems; j++) {
-                operands[j][i] = Integer.parseInt(problemsOperandRow[j]);
-                System.out.print("|" + operands[j][i] + "| ");
+                operands[j][i] = Long.parseLong(problemsOperandRow[j]);
+                // System.out.print("|" + operands[j][i] + "| ");
             }
-            System.out.println();
+            // System.out.println();
         }
         String[] operators = input.get(numberOfOperands).replaceAll("\\s+", " ").trim().split(" ");
-        System.out.println(Arrays.toString(operators));
+        // System.out.println(Arrays.toString(operators));
 
-        int sum = 0;
+        long sum = 0;
 
         for (int i = 0; i < numberOfProblems; i++) {
-            int result = 0;
+            long result = 0;
             if (operators[i].equals("*")) {
                 result = 1;
             }
@@ -48,9 +47,9 @@ public class Day06 extends Day {
                     result += operands[i][j];
                 }
             }
-            System.out.println(Arrays.stream(operands[i])
-                                    .mapToObj(String::valueOf) // Convert each int to a String
-                                    .collect(Collectors.joining(" "+operators[i]+" ")) + " = " + result); 
+            // System.out.println(Arrays.stream(operands[i])
+            //                         .mapToObj(String::valueOf)
+            //                         .collect(Collectors.joining(" "+operators[i]+" ")) + " = " + result); 
             sum += result;
         }
 
