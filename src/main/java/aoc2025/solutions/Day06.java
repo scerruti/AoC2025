@@ -11,11 +11,11 @@ public class Day06 extends Day {
 
     @Override
     public String part1(ArrayList<String> input) {
-        int numberOfOperands = input.size() - 1;
-        int numberOfProblems = input.get(0).replaceAll("\\s+", " ").trim().split(" ").length;
+        int rowCount = input.size() - 1;
+        int problemCount = input.get(0).replaceAll("\\s+", " ").trim().split(" ").length;
 
-        long[][] operands = new long[numberOfProblems][numberOfOperands];
-        for (int i = 0; i < numberOfOperands; i++) {
+        long[][] problems = new long[problemCount][rowCount];
+        for (int i = 0; i < rowCount; i++) {
             // System.out.print(input.get(i) + ": ");
             // I fell into a trap here if trying to split by " " but there are multiple
             // spaces
@@ -24,38 +24,38 @@ public class Day06 extends Day {
             // remove leading spaces
             String normalizedLine = input.get(i).replaceAll("\\s+", " ").trim();
             // System.out.print(normalizedLine + ": ");
-            // System.out.print("[" + operands.length + "] ");
-            String[] problemsOperandRow = normalizedLine.split(" ");
-            for (int j = 0; j < numberOfProblems; j++) {
-                operands[j][i] = Long.parseLong(problemsOperandRow[j]);
-                // System.out.print("|" + operands[j][i] + "| ");
+            // System.out.print("[" + problems.length + "] ");
+            String[] numbersInRow = normalizedLine.split(" ");
+            for (int j = 0; j < problemCount; j++) {
+                problems[j][i] = Long.parseLong(numbersInRow[j]);
+                // System.out.print("|" + problems[j][i] + "| ");
             }
             // System.out.println();
         }
-        String[] operators = input.get(numberOfOperands).replaceAll("\\s+", " ").trim().split(" ");
+        String[] operators = input.get(rowCount).replaceAll("\\s+", " ").trim().split(" ");
         // System.out.println(Arrays.toString(operators));
 
-        long sum = 0;
-        for (int i = 0; i < numberOfProblems; i++) {
+        long grandTotal = 0;
+        for (int i = 0; i < problemCount; i++) {
             long result = 0;
             if (operators[i].equals("*")) {
                 result = 1;
             }
 
-            for (int j = 0; j < numberOfOperands; j++) {
+            for (int j = 0; j < rowCount; j++) {
                 if (operators[i].equals("*")) {
-                    result *= operands[i][j];
+                    result *= problems[i][j];
                 } else {
-                    result += operands[i][j];
+                    result += problems[i][j];
                 }
             }
-            // System.out.println(Arrays.stream(operands[i])
+            // System.out.println(Arrays.stream(problems[i])
             // .mapToObj(String::valueOf)
             // .collect(Collectors.joining(" "+operators[i]+" ")) + " = " + result);
-            sum += result;
+            grandTotal += result;
         }
 
-        return String.valueOf(sum);
+        return String.valueOf(grandTotal);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Day06 extends Day {
         String operatorLine = input.get(numberOfDigits);
         int index = 0;
         int position = -1;
-        while ((position = indexOfOperator(operatorLine, position + 1)) != -1) {
+        while ((position = findNextOperatorIndex(operatorLine, position + 1)) != -1) {
             termColumns[index] = position;
             index += 1;
         }
@@ -131,7 +131,7 @@ public class Day06 extends Day {
         return String.valueOf(sum);
     }
 
-    public static int indexOfOperator(String operatorLine, int position) {
+    public static int findNextOperatorIndex(String operatorLine, int position) {
         int starIndex = operatorLine.indexOf('*', position);
         int plusIndex = operatorLine.indexOf('+', position);
         
