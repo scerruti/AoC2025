@@ -103,16 +103,18 @@ public class Day06 extends Day {
      * at the top. Spaces within columns are significant and indicate digit positions.
      * 
      * Example:
-     *   123 328
-     *    45  64
-     *     6  98
-     *    *   +
+     * <pre>
+     * 123 328
+     *  45  64
+     *   6  98
+     * *   +
+     * </pre>
      * 
-     * Reading right-to-left by column:
-     *   - Rightmost: 8 (top), 4 (middle), 6 (bottom) → reads as 6, 4, 8 → numbers: 6, 48, 68
-     *   - Next: 2, 6, 9 → reads as 9, 6, 2 → numbers: 9, 26, 92
+     * In Part 2, each problem is read vertically within its column space, with digits
+     * assembled right-to-left. The actual algorithm is complex and demonstrates advanced
+     * string manipulation with position tracking. See the code implementation for details.
      * 
-     * This is more complex than Part 1 and demonstrates advanced string manipulation.
+     * This is significantly more complex than Part 1 and is beyond typical AP CSA scope.
      * 
      * @param input List of strings representing the worksheet rows
      * @return The grand total (sum of all problem results)
