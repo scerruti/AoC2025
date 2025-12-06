@@ -1,6 +1,7 @@
 package aoc2025.solutions;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 // import java.util.Arrays;
 // import java.util.stream.Collectors;
 
@@ -12,28 +13,37 @@ public class Day06 extends Day {
     @Override
     public String part1(ArrayList<String> input) {
         int rowCount = input.size() - 1;
-        int problemCount = input.get(0).replaceAll("\\s+", " ").trim().split(" ").length;
+        
+        // Use Scanner to count problems in first line
+        Scanner firstLineScanner = new Scanner(input.get(0));
+        int problemCount = 0;
+        while (firstLineScanner.hasNextLong()) {
+            firstLineScanner.nextLong();
+            problemCount++;
+        }
+        firstLineScanner.close();
 
         long[][] problems = new long[problemCount][rowCount];
         for (int row = 0; row < rowCount; row++) {
-            // System.out.print(input.get(row) + ": ");
-            // I fell into a trap here if trying to split by " " but there are multiple
-            // spaces
-            // I could have avoided the regular expression by reading the data with Scanner
-            // I also did not observe I needed to trim the string before processing to
-            // remove leading spaces
-            String normalizedLine = input.get(row).replaceAll("\\s+", " ").trim();
-            // System.out.print(normalizedLine + ": ");
-            // System.out.print("[" + problems.length + "] ");
-            String[] numbersInRow = normalizedLine.split(" ");
-            for (int problemIndex = 0; problemIndex < problemCount; problemIndex++) {
-                problems[problemIndex][row] = Long.parseLong(numbersInRow[problemIndex]);
-                // System.out.print("|" + problems[problemIndex][row] + "| ");
+            // Use Scanner to read numbers, automatically handling multiple spaces
+            Scanner lineScanner = new Scanner(input.get(row));
+            int problemIndex = 0;
+            while (lineScanner.hasNextLong()) {
+                problems[problemIndex][row] = lineScanner.nextLong();
+                problemIndex++;
             }
-            // System.out.println();
+            lineScanner.close();
         }
-        String[] operators = input.get(rowCount).replaceAll("\\s+", " ").trim().split(" ");
-        // System.out.println(Arrays.toString(operators));
+        
+        // Use Scanner to read operators
+        Scanner operatorScanner = new Scanner(input.get(rowCount));
+        String[] operators = new String[problemCount];
+        int operatorIndex = 0;
+        while (operatorScanner.hasNext()) {
+            operators[operatorIndex] = operatorScanner.next();
+            operatorIndex++;
+        }
+        operatorScanner.close();
 
         long grandTotal = 0;
         for (int problemIndex = 0; problemIndex < problemCount; problemIndex++) {
