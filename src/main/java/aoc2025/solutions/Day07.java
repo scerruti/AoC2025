@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-
 public class Day07 extends Day {
     private static final int EMPTY = '.';
     private static final int START = 'S';
     private static final int SPLITTER = '^';
-    public Day07() { super(7); }
+
+    public Day07() {
+        super(7);
+    }
 
     @Override
     public String part1(ArrayList<String> input) {
@@ -37,7 +39,7 @@ public class Day07 extends Day {
 
             for (Integer column : beamColumns) {
                 if (tachyonField[row][column] == EMPTY) {
-                    addIfUnique(nextBeamColumns,column);
+                    addIfUnique(nextBeamColumns, column);
                 } else if (tachyonField[row][column] == SPLITTER) {
                     addIfUnique(nextBeamColumns, column - 1);
                     addIfUnique(nextBeamColumns, column + 1);
@@ -50,7 +52,8 @@ public class Day07 extends Day {
     }
 
     private boolean addIfUnique(ArrayList<Integer> nextBeamColumns, Integer column) {
-        if (nextBeamColumns.contains(column)) return false;
+        if (nextBeamColumns.contains(column))
+            return false;
 
         nextBeamColumns.add(column);
         return true;
@@ -69,66 +72,56 @@ public class Day07 extends Day {
             }
         }
 
-        int pathCount = 0;
         ArrayList<Point> particleLocations = new ArrayList<>();
-        HashMap<Point, Integer> cache = new HashMap<>();
+        HashMap<Point, Long> pathsBelow = new HashMap<>();
         particleLocations.add(new Point(0, start));
 
         while (particleLocations.size() > 0) {
             Point current = particleLocations.get(0);
             // System.out.println(current);
-            Point next = new Point(current.row+1, current.column);
-            Point right = new Point(current.row+1, current.column + 1);
-            Point left = new Point(current.row+1, current.column - 1);
-
-            if (cache.keySet().contains(current)) {
-                pathCount = cache.get(current);
-                cache.put(current, pathCount * 2);
-                // System.out.println("Cached: " + current + " " +cache.get(current));
-                particleLocations.remove(0);
-                continue;
-            }
+            Point next = new Point(current.row + 1, current.column);
+            Point right = new Point(current.row + 1, current.column + 1);
+            Point left = new Point(current.row + 1, current.column - 1);
 
             int nextRow = current.row + 1;
             if (nextRow >= tachyonFieldLength) {
-                cache.put(current, 1);
-                // System.out.println("Cached: " + current + " " +cache.get(current));
+                pathsBelow.put(current, 1L);
                 particleLocations.remove(0);
                 continue;
             }
 
             if (tachyonField[nextRow][current.column] == EMPTY) {
-                if (cache.keySet().contains(next)) {
-                    cache.put(current, cache.get(next));
-                    // System.out.println("Cached: " + current + " " +cache.get(current));
-                   particleLocations.remove(0);
+                if (pathsBelow.keySet().contains(next)) {
+                    pathsBelow.put(current, pathsBelow.get(next));
+                    // System.out.println("Cached: " + current + " " + pathsBelow.get(current));
+                    particleLocations.remove(0);
                 } else {
                     particleLocations.add(0, next);
                 }
             } else if (tachyonField[nextRow][current.column] == SPLITTER) {
                 boolean descended = false;
-                int lowerPaths = 0;
-                if (cache.keySet().contains(right)) {
-                    lowerPaths = cache.get(right);
+                long lowerPaths = 0;
+                if (pathsBelow.keySet().contains(right)) {
+                    lowerPaths = pathsBelow.get(right);
                 } else {
                     particleLocations.add(0, right);
                     descended = true;
                 }
-                if (cache.keySet().contains(left)) {
-                    lowerPaths += cache.get(left);
+                if (pathsBelow.keySet().contains(left)) {
+                    lowerPaths += pathsBelow.get(left);
                 } else {
                     particleLocations.add(0, left);
                     descended = true;
                 }
                 if (!descended) {
-                    cache.put(current, lowerPaths);
-                    // System.out.println("Cached: " + current + " " +cache.get(current));
+                    pathsBelow.put(current, lowerPaths);
+                    // System.out.println("Cached: " + current + " " + pathsBelow.get(current));
                     particleLocations.remove(0);
                 }
             }
         }
 
-        return String.valueOf(cache.get(new Point(0, start)));    
+        return String.valueOf(pathsBelow.get(new Point(0, start)));
     }
 
     public class Point {
@@ -147,11 +140,13 @@ public class Day07 extends Day {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false; // Or use instanceof
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass())
+                return false; // Or use instanceof
             Point point = (Point) o;
 
-            return row == point.row && column == point.column;
+            return Objects.equals(row, point.row) && Objects.equals(column, point.column);
         }
 
         @Override
