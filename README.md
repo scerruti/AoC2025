@@ -73,7 +73,7 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **LO 4.1.A: Object-Oriented Design** (Range class, inheritance from Day)
     - **LO 4.8.A / 4.9.A: Data Collections** (ArrayList creation and traversal)
 
-### [Day 6: Trash Compactor](https://scerruti.github.io/AoC2025/writeups/Day06/)
+### [Day 6: Trash Compactor](https://scerruti.github.io/AoC2025/writeups/day06/)
 - **Scanner Class**: Whitespace-tolerant parsing without regex (AP CSA compliant).
 - **2D Arrays**: Organizing data by problem and number position.
 - **Identity Values**: Mathematical foundations for multiplication (1) and addition (0).
