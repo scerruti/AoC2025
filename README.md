@@ -92,6 +92,22 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **3A**: Design assessments measuring student learning
     - **5B**: Model inclusive practices (diverse perspectives metaphor)
 
+### [Day 7: Tachyon Beam Splitters](https://scerruti.github.io/AoC2025/writeups/Day07/) (Beyond AP CSA)
+- **⚠️ Beyond AP CSA 2025**: Recursion removed from curriculum in May 2026 exam
+- **Recursion Fundamentals**: Base cases, recursive cases, call stack mechanics
+- **Dynamic Programming**: Three approaches compared (iterative, memoization, bottom-up DP)
+- **Performance Analysis**: Bottom-up DP 10× faster than stack-based approaches
+- **HashMap Usage**: Memoization caching with String and Point keys
+- **HashSet**: Tracking visited positions to prevent cycles
+- **Educational Value**: Recursion remains essential for college CS courses
+- **Topics Covered:**
+    - **CON-2.B**: Iteration with explicit stack vs recursion
+    - **VAR-2.E**: 2D arrays for field representation and DP table
+    - **MOD-3.B**: HashSet and HashMap for tracking and caching
+    - Factorial example demonstrating recursion fundamentals
+    - Path counting with exponential branching (splitters)
+    - Academic citation: Garcia & Craig (2025) on recursion in CS1 curricula
+
 ## About
 
 - See [Advent of Code](https://adventofcode.com) for event details and rules.
