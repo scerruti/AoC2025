@@ -92,7 +92,7 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **3A**: Design assessments measuring student learning
     - **5B**: Model inclusive practices (diverse perspectives metaphor)
 
-### [Day 7: Tachyon Beam Splitters](https://scerruti.github.io/AoC2025/writeups/Day07/) (Beyond AP CSA)
+### [Day 7: Tachyon Beam Splitters](https://scerruti.github.io/AoC2025/writeups/day07/) (Beyond AP CSA)
 - **⚠️ Beyond AP CSA 2025**: Recursion removed from curriculum in May 2026 exam
 - **Recursion Fundamentals**: Base cases, recursive cases, call stack mechanics
 - **Dynamic Programming**: Three approaches compared (iterative, memoization, bottom-up DP)
