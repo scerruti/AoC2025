@@ -108,6 +108,13 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - Path counting with exponential branching (splitters)
     - Academic citation: Garcia & Craig (2025) on recursion in CS1 curricula
 
+
+### [Day 8: Playground](https://adventofcode.com/2025/day/8)
+- **⚠️ Not Suitable for AP CSA**
+- **Advanced Algorithms**: Requires minimum spanning tree/union-find, 3D geometry, and performance optimization (octree/ball tree).
+- **Beyond Curriculum**: These topics are not covered in AP CSA and are not appropriate for introductory Java students.
+- **Pedagogical Note**: This puzzle is best skipped for AP CSA. See the "not the droids you are looking for" post for details.
+
 ## About
 
 - See [Advent of Code](https://adventofcode.com) for event details and rules.
