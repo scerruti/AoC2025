@@ -41,7 +41,7 @@ public class Day09 extends Day {
             if (point.y < minY) minY = point.y;
         }
 
-        // System.out.println("Number of red tiles: " + redTiles.size());
+        System.out.println("Number of red tiles: " + redTiles.size());
 
         // Adjust points to 0-based coordinates
         // for (Point point : redTiles) {
@@ -126,18 +126,40 @@ public class Day09 extends Day {
             prev = point;
         }
 
-        System.out.println("Built model");
+        System.out.println("Finished drawing boundary");
+
+        floor.fillInterior();
+
+        System.out.println("Finished filling interior");
+
         // floor.printFloor();
 
-
-
-        long maxArea = 0;
+        // Create list of pairs sorted by area descending
+        ArrayList<int[]> pairs = new ArrayList<>();
         for (int i = 0; i < redTiles.size() - 1; i++) {
-            for (int j = i+1; j < redTiles.size(); j++) {
-                long area = redTiles.get(i).filledAreaWith(redTiles.get(j), floor);
-                if (area > maxArea) {
-                    maxArea = area;
-                }
+            for (int j = i + 1; j < redTiles.size(); j++) {
+                long area = redTiles.get(i).areaWith(redTiles.get(j));
+                pairs.add(new int[]{i, j, (int)area});  // Store indices and area
+            }
+        }
+        pairs.sort((a, b) -> Integer.compare(b[2], a[2]));  // Sort by area descending
+
+        System.out.println("Total pairs to check: " + pairs.size());
+        long maxArea = 0;
+        int checked = 0;
+        for (int[] pair : pairs) {
+            int i = pair[0];
+            int j = pair[1];
+            long area = redTiles.get(i).filledAreaWith(redTiles.get(j), floor);
+            if (area > maxArea) {
+                maxArea = area;
+                System.out.println("Found new max area: " + maxArea + " after checking " + (checked + 1) + " pairs");
+                // Since sorted descending, this is the largest possible filled area
+                break;  // No need to check smaller areas
+            }
+            checked++;
+            if (checked % 100 == 0) {
+                System.out.println("Checked " + checked + " pairs, current max area: " + maxArea);
             }
         }
         return String.valueOf(maxArea);
@@ -195,32 +217,16 @@ public class Day09 extends Day {
         }
 
         public long filledAreaWith(Point p, FloorModel floor) {
-            long width = (long) (Math.abs(x - p.x) + 1);
-            long length = (long) (Math.abs(y - p.y) + 1);
+            int minX = Math.min(x, p.x);
+            int maxX = Math.max(x, p.x);
+            int minY = Math.min(y, p.y);
+            int maxY = Math.max(y, p.y);
+            long width = maxX - minX + 1;
+            long length = maxY - minY + 1;
 
-            int startY = y;
-            int endY = p.y;
-            int stepY = (startY < endY) ? 1 : -1;
-            for (int r = startY; r != endY + stepY; r += stepY) {
-                int startX = x;
-                int endX = p.x;
-                int stepX = (startX < endX) ? 1 : -1;
-                for (int c = startX; c != endX + stepX; c += stepX) {
-                    if (!floor.isTile(c, r)) {
-                        // Optimized ray casting using RLE: count filled runs starting after c
-                        int crossings = 0;
-                        ArrayList<int[]> secs = floor.floor.get(r);
-                        int cumPos = 0;
-                        for (int[] sec : secs) {
-                            int type = sec[0];
-                            int len = sec[1];
-                            if (type == 1 && cumPos > c) {
-                                crossings++;
-                            }
-                            cumPos += len;
-                        }
-                        if (crossings % 2 == 0) return 0;
-                    }
+            for (int r = minY; r <= maxY; r++) {
+                if (floor.getFilledLengthInRange(r, minX, maxX) != width) {
+                    return 0;
                 }
             }
 
