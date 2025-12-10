@@ -109,11 +109,23 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - Academic citation: Garcia & Craig (2025) on recursion in CS1 curricula
 
 
-### [Day 8: Playground](https://adventofcode.com/2025/day/8)
+### [Day 8: Playground](https://scerruti.github.io/AoC2025/writeups/Day08/)
 - **⚠️ Not Suitable for AP CSA**
 - **Advanced Algorithms**: Requires minimum spanning tree/union-find, 3D geometry, and performance optimization (octree/ball tree).
 - **Beyond Curriculum**: These topics are not covered in AP CSA and are not appropriate for introductory Java students.
 - **Pedagogical Note**: This puzzle is best skipped for AP CSA. See the "not the droids you are looking for" post for details.
+
+### [Day 9: Polygon Area Maximization](https://scerruti.github.io/AoC2025/writeups/Day09/)
+- **Run-Length Encoding (RLE)**: Memory-efficient grid representation using ArrayList of arrays for row sections.
+- **Polygon Filling**: Even-odd rule implementation for interior filling after boundary drawing.
+- **Optimization Techniques**: Sorting pairs by area descending to find maximum early; row-wise filled length checks instead of per-cell verification.
+- **Data Structures**: Custom FloorModel class with RLE for scalable grid operations.
+- **Performance**: Handles large inputs (496 points, 122k pairs) in under 1 second through algorithmic optimizations.
+- **AP CSA LOs:**
+    - **LO 2.7.B: Iteration** (nested loops for pair checking)
+    - **LO 4.3.A / 4.4.A: Arrays** (2D array concepts via RLE sections)
+    - **LO 4.8.A / 4.9.A: Data Collections** (ArrayList for dynamic RLE storage)
+    - **LO 5.3.A: Algorithm Analysis** (optimizing O(n²) pair checks with sorting and early termination)
 
 ## About
 

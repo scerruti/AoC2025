@@ -41,133 +41,138 @@ public class Day09 extends Day {
             if (point.y < minY) minY = point.y;
         }
 
-        // Build border map (only segment borders, not redTiles)
-        java.util.Map<Integer, java.util.List<Integer>> borderMap = new java.util.HashMap<>();
+        System.out.println("Number of red tiles: " + redTiles.size());
+
+        // Adjust points to 0-based coordinates
+        // for (Point point : redTiles) {
+        //     point.x -= minX;
+        //     point.y -= minY;
+        // }
+
+        /* RLE Version is more memory friendly */
+        // Connect the red tiles with green tiles
+        // int[][] floor = new int[maxX+2][maxY+2];
+        // Point prev = redTiles.get(redTiles.size()-1);
+        // for (Point point : redTiles) {
+        //     floor[point.x][point.y] = 1;
+        //     if (point.x == prev.x) {
+        //         int start = point.y;
+        //         int end = prev.y;
+        //         int step = (start < end) ? 1 : -1;
+        //         for (int r = start; r != end + step; r += step) {
+        //             floor[point.x][r] = 1;
+        //         }
+        //     } else {
+        //         int start = point.x;
+        //         int end = prev.x;
+        //         int step = (start < end) ? 1 : -1;
+        //         for (int c = start; c != end + step; c += step) {
+        //             floor[c][point.y] = 1;
+        //         }
+        //     }
+        //     prev = point;
+        // }
+        // printFloor(floor);
+
+        // Fill interior points using even-odd rule (horizontal scanline, toggle only on 0->1 transitions)
+        // for (int y = 0; y < maxY + 1; y++) {
+        //     boolean inside = false;
+        //     for (int x = 0; x < maxX + 1; x++) {
+        //         if (x > 0 && floor[x-1][y] == 0 && floor[x][y] == 1) {
+        //             inside = !inside;
+        //         }
+        //         if (inside && floor[x][y] == 0) {
+        //             floor[x][y] = 1;
+        //         }
+        //     }
+        // }
+        // System.out.println("\n\n");
+        // printFloor(floor);
+
+        /* RLE Version is more memory friendly */
+        FloorModel floor = new FloorModel(maxX + 1, maxY + 1);
+
+        // Draw green tiles between red tiles
         Point prev = redTiles.get(redTiles.size()-1);
         for (Point point : redTiles) {
+            // System.out.println("Adding tile at " + point.x + "," + point.y);
+            floor.addTile(point.x, point.y);
             if (point.x == prev.x) {
                 int start = point.y;
                 int end = prev.y;
-                int step = (start < end) ? 1 : -1;
-                for (int r = start; r != end + step; r += step) {
-                    borderMap.computeIfAbsent(r, k -> new java.util.ArrayList<>()).add(point.x);
+                if (start < end) {
+                    for (int r = start + 1; r < end; r++) {
+                        floor.addTile(point.x, r);
+                    }
+                } else {
+                    for (int r = start - 1; r > end; r--) {
+                        floor.addTile(point.x, r);
+                    }
                 }
             } else {
                 int start = point.x;
                 int end = prev.x;
-                int step = (start < end) ? 1 : -1;
-                for (int c = start; c != end + step; c += step) {
-                    borderMap.computeIfAbsent(point.y, k -> new java.util.ArrayList<>()).add(c);
-                }
-            }
-            prev = point;
-        }
-
-        // Build filled intervals using simulated scanline fill
-        java.util.Map<Integer, java.util.List<int[]>> filledIntervals = new java.util.HashMap<>();
-        int gridWidth = maxX + 2;
-        for (int y = 0; y < maxY + 2; y++) {
-            java.util.List<Integer> borders = borderMap.get(y);
-            if (borders == null) borders = new java.util.ArrayList<>();
-            // Add redTiles as borders for this row
-            for (Point p : redTiles) {
-                if (p.y == y) {
-                    borders.add(p.x);
-                }
-            }
-            java.util.Collections.sort(borders);
-            // Remove duplicates
-            java.util.List<Integer> uniqueBorders = new java.util.ArrayList<>();
-            for (int x : borders) {
-                if (uniqueBorders.isEmpty() || uniqueBorders.get(uniqueBorders.size()-1) != x) {
-                    uniqueBorders.add(x);
-                }
-            }
-            borders = uniqueBorders;
-
-            java.util.List<int[]> intervals = new java.util.ArrayList<>();
-            // Add all borders as filled
-            for (int x : borders) {
-                intervals.add(new int[]{x, x});
-            }
-            // Simulate scanline fill for interior (using only segment borders for toggle)
-            java.util.List<Integer> segmentBorders = borderMap.get(y);
-            if (segmentBorders == null) segmentBorders = new java.util.ArrayList<>();
-            java.util.Collections.sort(segmentBorders);
-            java.util.List<Integer> uniqueSegmentBorders = new java.util.ArrayList<>();
-            for (int x : segmentBorders) {
-                if (uniqueSegmentBorders.isEmpty() || uniqueSegmentBorders.get(uniqueSegmentBorders.size()-1) != x) {
-                    uniqueSegmentBorders.add(x);
-                }
-            }
-            segmentBorders = uniqueSegmentBorders;
-            boolean[] isSegmentBorder = new boolean[gridWidth];
-            for (int x : segmentBorders) {
-                if (x >= 0 && x < gridWidth) isSegmentBorder[x] = true;
-            }
-            boolean inside = false;
-            int start = -1;
-            for (int x = 0; x <= maxX; x++) {
-                if (x > 0 && !isSegmentBorder[x-1] && isSegmentBorder[x]) {
-                    inside = !inside;
-                }
-                if (inside && !isSegmentBorder[x]) {
-                    if (start == -1) start = x;
+                if (start < end) {
+                    for (int c = start + 1; c < end; c++) {
+                        floor.addTile(c, point.y);
+                    }
                 } else {
-                    if (start != -1) {
-                        intervals.add(new int[]{start, x-1});
-                        start = -1;
+                    for (int c = start - 1; c > end; c--) {
+                        floor.addTile(c, point.y);
                     }
                 }
             }
-            if (start != -1) intervals.add(new int[]{start, maxX});
-            // Merge intervals
-            intervals.sort(java.util.Comparator.comparingInt(a -> a[0]));
-            java.util.List<int[]> merged = new java.util.ArrayList<>();
-            for (int[] interval : intervals) {
-                if (merged.isEmpty() || merged.get(merged.size()-1)[1] + 1 < interval[0]) {
-                    merged.add(interval);
-                } else {
-                    merged.get(merged.size()-1)[1] = Math.max(merged.get(merged.size()-1)[1], interval[1]);
-                }
-            }
-            filledIntervals.put(y, merged);
+            // floor.printFloor();
+            prev = point;
         }
 
-        // Print filled grid for visualization (comment out for large datasets)
-        // printFilledGrid(filledIntervals, 0, gridWidth-1, 0, maxY+1, redTiles);
+        System.out.println("Finished drawing boundary");
 
-        long maxArea = 0;
+        floor.fillInterior();
+
+        System.out.println("Finished filling interior");
+
+        // floor.printFloor();
+
+        // Create list of pairs sorted by area descending
+        ArrayList<int[]> pairs = new ArrayList<>();
         for (int i = 0; i < redTiles.size() - 1; i++) {
-            for (int j = i+1; j < redTiles.size(); j++) {
-                long area = redTiles.get(i).filledAreaWith(redTiles.get(j), filledIntervals);
-                if (area > maxArea) {
-                    maxArea = area;
-                }
+            for (int j = i + 1; j < redTiles.size(); j++) {
+                long area = redTiles.get(i).areaWith(redTiles.get(j));
+                pairs.add(new int[]{i, j, (int)area});  // Store indices and area
+            }
+        }
+        pairs.sort((a, b) -> Integer.compare(b[2], a[2]));  // Sort by area descending
+
+        System.out.println("Total pairs to check: " + pairs.size());
+        long maxArea = 0;
+        int checked = 0;
+        for (int[] pair : pairs) {
+            int i = pair[0];
+            int j = pair[1];
+            long area = redTiles.get(i).filledAreaWith(redTiles.get(j), floor);
+            if (area > maxArea) {
+                maxArea = area;
+                System.out.println("Found new max area: " + maxArea + " after checking " + (checked + 1) + " pairs");
+                // Since sorted descending, this is the largest possible filled area
+                break;  // No need to check smaller areas
+            }
+            checked++;
+            if (checked % 100 == 0) {
+                System.out.println("Checked " + checked + " pairs, current max area: " + maxArea);
             }
         }
         return String.valueOf(maxArea);
     }
 
-    private static void printFilledGrid(java.util.Map<Integer, java.util.List<int[]>> filledIntervals, int minX, int maxX, int minY, int maxY, java.util.List<Point> redTiles) {
-        System.out.println("Tiles after filling:");
-        for (int y = minY; y <= maxY; y++) {
-            for (int x = minX; x <= maxX; x++) {
-                java.util.List<int[]> intervals = filledIntervals.get(y);
-                boolean filled = false;
-                if (intervals != null) {
-                    for (int[] interval : intervals) {
-                        if (interval[0] <= x && x <= interval[1]) {
-                            filled = true;
-                            break;
-                        }
-                    }
-                }
-                System.out.print(filled ? "1" : "0");
-            }
-            System.out.println();
-        }
-    }
+    // private static void printFloor(int[][] floor) {
+    //     for (int r = 0; r < floor[0].length; r++) {
+    //         for (int c = 0; c < floor.length; c++) {
+    //             System.out.print(floor[c][r]);
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 
     public class Point {
         int x;
@@ -192,26 +197,37 @@ public class Day09 extends Day {
             return width * length;
         }
 
-        public long filledAreaWith(Point p, java.util.Map<Integer, java.util.List<int[]>> filledIntervals) {
+        public long filledAreaWith(Point p, int[][] floor) {
             long width = (long) (Math.abs(x - p.x) + 1);
             long length = (long) (Math.abs(y - p.y) + 1);
 
-            int startY = Math.min(y, p.y);
-            int endY = Math.max(y, p.y);
-            int startX = Math.min(x, p.x);
-            int endX = Math.max(x, p.x);
-
-            for (int r = startY; r <= endY; r++) {
-                java.util.List<int[]> intervals = filledIntervals.get(r);
-                if (intervals == null) return 0;
-                boolean covered = false;
-                for (int[] interval : intervals) {
-                    if (interval[0] <= startX && endX <= interval[1]) {
-                        covered = true;
-                        break;
-                    }
+            int startY = y;
+            int endY = p.y;
+            int stepY = (startY < endY) ? 1 : -1;
+            for (int r = startY; r != endY + stepY; r += stepY) {
+                int startX = x;
+                int endX = p.x;
+                int stepX = (startX < endX) ? 1 : -1;
+                for (int c = startX; c != endX + stepX; c += stepX) {
+                    if (floor[c][r] == 0) return 0;
                 }
-                if (!covered) return 0;
+            }
+
+            return width * length;
+        }
+
+        public long filledAreaWith(Point p, FloorModel floor) {
+            int minX = Math.min(x, p.x);
+            int maxX = Math.max(x, p.x);
+            int minY = Math.min(y, p.y);
+            int maxY = Math.max(y, p.y);
+            long width = maxX - minX + 1;
+            long length = maxY - minY + 1;
+
+            for (int r = minY; r <= maxY; r++) {
+                if (floor.getFilledLengthInRange(r, minX, maxX) != width) {
+                    return 0;
+                }
             }
 
             return width * length;
