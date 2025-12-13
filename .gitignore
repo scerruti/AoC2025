@@ -16,3 +16,5 @@ target/
 src/main/resources/day[0-9][0-9].txt
 # OS
 Thumbs.db
+# Development logs
+*_Development_Log.md
