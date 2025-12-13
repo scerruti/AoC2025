@@ -3,11 +3,11 @@ aaa: fft
 fft: ccc
 bbb: tty
 tty: ccc
-ccc: ddd eee
+ccc: ddd eee aaa
 ddd: hub
 hub: fff
 eee: dac
 dac: fff
 fff: ggg hhh
 ggg: out
-hhh: out
+hhh: out fff

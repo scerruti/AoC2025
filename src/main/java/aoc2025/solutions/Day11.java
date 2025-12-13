@@ -2,19 +2,22 @@ package aoc2025.solutions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 
 public class Day11 extends Day {
     private TreeMap<String, Device> connectionMap = new TreeMap<>();
     private Device start;
     private Device exit;
+    private HashMap<String, Long> memo = new HashMap<>();
     
     public Day11() { super(11); }
 
     @Override
     public String part1(ArrayList<String> input) {
-        String startName = "you";
+        String startName = "you"; 
         String exitName = "out";
         for (String line: input) {
             Device.buildConnectionFromString(line, connectionMap, this, startName, exitName);
@@ -23,26 +26,31 @@ public class Day11 extends Day {
         // printMap();
 
         // Count paths from you to out
-        int paths = routesTo(start, exit);
+        long paths = routesTo(start, exit);
 
         return String.valueOf(paths);
     }
 
-    private int routesTo(Device from, Device to) {
+    private long routesTo(Device from, Device to) {
         return routesTo(from, to, new Device[0]);
     }
 
-    private int routesTo(Device from, Device to, Device[] exclusions) {
+    private long routesTo(Device from, Device to, Device[] exclusions) {
         return routesTo(from, to, exclusions, new ArrayList<>());
     }
 
-    private int routesTo(Device from, Device to, Device[] exclusions, ArrayList<Device> path) {
+    private long routesTo(Device from, Device to, Device[] exclusions, ArrayList<Device> path) {
+        String exclusionsStr = Arrays.stream(exclusions).map(Device::getName).sorted().collect(Collectors.joining(","));
+        String key = from.getName() + "|" + to.getName() + "|" + exclusionsStr;
+        if (memo.containsKey(key)) return memo.get(key);
+        
         ArrayList<Device> newPath = new ArrayList<>(path);
         newPath.add(from);
+        System.out.println(newPath.stream().map(Device::getName).collect(Collectors.joining(" -> ")));
 
-        if (from == to) return 1;
+        if (from == to) return 1L;
 
-        int paths = 0;
+        long paths = 0;
         for (Device child : from.getConnections()) {
             if (path.contains(child)) continue;
             boolean excluded = false;
@@ -52,8 +60,9 @@ public class Day11 extends Day {
                     break;
                 }
             }
-            if (!excluded) paths += routesTo(child, to, exclusions, path);
+            if (!excluded) paths += routesTo(child, to, exclusions, newPath);
         }
+        memo.put(key, paths);
         return paths;
     }
 
@@ -68,7 +77,7 @@ public class Day11 extends Day {
             if (requiredDevices[i] == null) throw new RuntimeException("Required node not found.");
         }
 
-        int[] pathPartCount = new int[requiredNodes.length * 2 + (requiredNodes.length * requiredNodes.length)];
+        long[] pathPartCount = new long[requiredNodes.length * 2 + (requiredNodes.length * requiredNodes.length)];
 
         for (int i = 0; i < requiredDevices.length; i++) {
             pathPartCount[i] = routesTo(start, requiredDevices[i], requiredDevices);
@@ -88,10 +97,10 @@ public class Day11 extends Day {
             System.out.printf("%d:\tThere are %d paths from %s to %s%n", requiredDevices.length + requiredDevices.length * requiredDevices.length + i, pathPartCount[requiredDevices.length + requiredDevices.length * requiredDevices.length + i], requiredDevices[i], exit);
        }
 
-        int paths = 0;
+        long paths = 0;
         required:
         for (int i = 0; i < requiredDevices.length; i++) {
-            int pathCount = pathPartCount[i];  // Start to i
+            long pathCount = pathPartCount[i];  // Start to i
             for (int j = 0; j < requiredDevices.length; j++) {
                 if (i == j) continue;
                 pathCount *= pathPartCount[requiredDevices.length + requiredDevices.length * requiredDevices.length + j]; // j to end
