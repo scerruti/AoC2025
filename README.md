@@ -145,6 +145,23 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **2-AP-13:** Use and adapt classic algorithms
     - **2-AP-14:** Use data structures
 
+### [Day 11: Device Path Counting](https://scerruti.github.io/AoC2025/writeups/Day11/)
+- **Graph Traversal**: Modeling device connections as a directed graph with recursive DFS.
+- **Memoization**: Caching path counts to optimize overlapping subproblems in Part 2.
+- **Combinatorial Algorithms**: Segmented path counting for required device visits.
+- **Cycle Detection**: Preventing infinite loops with path tracking.
+- **Data Types**: Using `long` for large path counts exceeding `int` limits.
+- **AP CSA LOs:**
+    - **LO 2.7.B: Iteration** (recursive DFS traversal)
+    - **LO 4.8.A / 4.9.A: Data Collections** (ArrayList for paths, HashMap for memoization)
+    - **LO 5.3.A: Algorithm Analysis** (memoization for efficiency)
+    - **LO 1.3.C: Arithmetic Expressions** (large number handling with `long`)
+- **CSTA Standards for CS Teachers:**
+    - **3A-AP-17:** Decompose problems into smaller, solvable units
+    - **3A-AP-18:** Create algorithms for analysis
+    - **3A-AP-16:** Evaluate algorithms for efficiency
+    - **3A-AP-22:** Use abstractions to manage complexity
+
 ## About
 
 - See [Advent of Code](https://adventofcode.com) for event details and rules.

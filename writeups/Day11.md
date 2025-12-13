@@ -1,5 +1,7 @@
 # Day 11: Device Path Counting
 
+> **Note:** This writeup was generated with assistance from GitHub Copilot to document the solution and pedagogical approach.
+
 ## Problem Description (Part 1)
 Advent of Code Day 11 involves navigating a network of devices connected in a directed graph. Each device has outputs that connect to other devices, forming a complex network. The goal of Part 1 is to count the number of paths from a starting device ("you") to an ending device ("out") without visiting any device more than once.
 
@@ -95,6 +97,3 @@ for (int i = 0; i < requiredDevices.length; i++) {
 ## Additional Learning Objectives
 - **AP CSA Alignment**: Introduces combinatorial algorithms and memoization for optimization, building on recursion. Students learn to handle permutations and large numbers with `long`.
 - **CSTA Standards for Teachers**: Supports 3A-AP-16 (evaluating algorithms for efficiency) and 3A-AP-22 (using abstractions to manage complexity). Teachers can discuss trade-offs between time and space in memoization.
-
-## AI Assistance
-This writeup was assisted by GitHub Copilot.
