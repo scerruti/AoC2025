@@ -127,6 +127,24 @@ This project highlights AP Computer Science A (AP CSA) concepts and learning obj
     - **LO 4.8.A / 4.9.A: Data Collections** (ArrayList for dynamic RLE storage)
     - **LO 5.3.A: Algorithm Analysis** (optimizing O(n²) pair checks with sorting and early termination)
 
+### [Day 10: Factory](https://scerruti.github.io/AoC2025/writeups/Day10/)
+- **Breadth-First Search (BFS)**: Exploring button press sequences for minimum steps.
+- **State Management**: Using boolean arrays for light states and cycle detection with HashSet.
+- **Recursive Backtracking**: Attempted for Part 2 with memoization (beyond AP CSA 2026).
+- **Integer Linear Programming (ILP)**: Advanced optimization for Part 2 using ojAlgo library (beyond AP CSA).
+- **Pruning and Optimization**: Skipping invalid states to reduce search space.
+- **AP CSA LOs:**
+    - **VAR-1.A: 1D Arrays** (boolean and int arrays for states)
+    - **MOD-2.A: Classes** (Button and ButtonPress constructors)
+    - **CON-2.A: Loops** (for loops in BFS and recursion)
+    - **VAR-2.E: ArrayList** (for queues)
+    - **VAR-2.F: HashSet** (for visited states; note: not in AP CSA subset)
+    - **AAP-1.A: Library Methods** (calling external libraries)
+- **CSTA Standards for CS Teachers:**
+    - **1A-AP-11:** Decompose problems into subproblems
+    - **2-AP-13:** Use and adapt classic algorithms
+    - **2-AP-14:** Use data structures
+
 ## About
 
 - See [Advent of Code](https://adventofcode.com) for event details and rules.
